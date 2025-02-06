@@ -1,0 +1,50 @@
+@import-normalize;
+
+:root {
+  --main-color: #9fb7ce;
+  --text-color-primary: #121417;
+  --text-color-secondary: #8a8a89;
+}
+
+body {
+  padding: 20px 64px 32px;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h5,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+address {
+  font-style: normal;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  height: auto;
+}
