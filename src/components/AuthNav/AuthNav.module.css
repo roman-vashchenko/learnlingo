@@ -1,0 +1,23 @@
+.wrapper {
+  display: flex;
+  gap: 16px;
+}
+
+.logInBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--text-color-primary);
+  font-weight: 700;
+}
+
+.registrationBtn {
+  padding: 14px 39px;
+  border-radius: 12px;
+  background-color: var(--text-color-primary);
+  color: #fff;
+  font-weight: 700;
+}

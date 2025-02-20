@@ -1,0 +1,14 @@
+.navigation {
+  display: flex;
+  gap: 28px;
+}
+
+.link {
+  padding-top: 14px;
+  padding-bottom: 14px;
+  color: var(--text-color-primary);
+}
+
+.active {
+  color: var(--main-color);
+}
