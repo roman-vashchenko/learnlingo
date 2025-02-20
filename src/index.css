@@ -1,4 +1,4 @@
-@import-normalize;
+@import "normalize.css";
 
 :root {
   --main-color: #9fb7ce;
