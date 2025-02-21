@@ -3,10 +3,10 @@ import Hero from "../../components/Hero/Hero";
 
 const HomePage = () => {
   return (
-    <main>
+    <div>
       <Hero />
       <Advantages />
-    </main>
+    </div>
   );
 };
 

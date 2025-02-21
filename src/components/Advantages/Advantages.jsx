@@ -10,15 +10,15 @@ const Advantages = () => {
         </li>
         <li className={css.item}>
           <span>300,000 +</span>
-          <p>Experienced tutors</p>
+          <p>5-star tutor reviews</p>
         </li>
         <li className={css.item}>
           <span>120 +</span>
-          <p>Experienced tutors</p>
+          <p>Subjects taught</p>
         </li>
         <li className={css.item}>
           <span>200 +</span>
-          <p>Experienced tutors</p>
+          <p>Tutor nationalities</p>
         </li>
       </ul>
     </section>
