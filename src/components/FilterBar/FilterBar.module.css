@@ -1,20 +1,49 @@
-.fieldLanguages {
+.wrapper {
   display: flex;
-  flex-direction: column;
-  width: 198px;
+  gap: 20px;
+  margin-bottom: 32px;
 }
 
-select {
+.fieldFilter {
+  position: relative;
   display: inline-flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 189px;
+}
+.fieldFilter label {
+  color: #8a8a89;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.28;
+}
+
+.fieldFilter svg {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  rotate: 180deg;
+  pointer-events: none;
+}
+
+.fieldFilter select {
+  appearance: none;
+  display: inline-flex;
+  padding: 16px 18px;
+  border-radius: 14px;
   border: transparent;
-  outline: none;
+
+  color: var(--text-color-primary);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.11;
+  cursor: pointer;
 }
 
-/* option {
-  border: none;
+.fieldFilter option {
+  color: rgba(18, 20, 23, 0.2);
 }
 
-select:focus {
-  border: none;
-  outline: none;
-} */
+.fieldFilter option:checked {
+  color: var(--text-color-primary);
+}
