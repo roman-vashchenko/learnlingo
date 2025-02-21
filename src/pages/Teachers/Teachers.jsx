@@ -1,5 +1,12 @@
+import FilterBar from "../../components/FilterBar/FilterBar";
+import css from "./Teachers.module.css";
+
 const Teachers = () => {
-  return <div></div>;
+  return (
+    <section className={css.section}>
+      <FilterBar />
+    </section>
+  );
 };
 
 export default Teachers;

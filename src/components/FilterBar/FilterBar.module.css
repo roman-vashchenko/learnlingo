@@ -1,0 +1,20 @@
+.fieldLanguages {
+  display: flex;
+  flex-direction: column;
+  width: 198px;
+}
+
+select {
+  display: inline-flex;
+  border: transparent;
+  outline: none;
+}
+
+/* option {
+  border: none;
+}
+
+select:focus {
+  border: none;
+  outline: none;
+} */
