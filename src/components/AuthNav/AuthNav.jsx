@@ -5,7 +5,7 @@ const AuthNav = () => {
     <div className={css.wrapper}>
       <button type="button" className={css.logInBtn}>
         <svg width={20} height={20}>
-          <use href="/public/symbol-defs.svg#icon-log-in"></use>
+          <use href="/img/icons.svg#icon-log-in"></use>
         </svg>
         <span>Log in</span>
       </button>

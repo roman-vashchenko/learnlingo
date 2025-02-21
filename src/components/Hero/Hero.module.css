@@ -1,0 +1,48 @@
+.section {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.content {
+  padding: 98px 108px 98px 64px;
+  background-color: #f8f8f8;
+  border-radius: 30px;
+}
+
+.title {
+  margin-bottom: 32px;
+  color: var(--text-color-primary);
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 1.17;
+  letter-spacing: -0.96px;
+}
+
+.text {
+  margin-bottom: 64px;
+  width: 441px;
+  color: var(--text-color-primary);
+  line-height: 1.37;
+  letter-spacing: -0.32px;
+}
+
+.btn {
+  padding: 16px 88px;
+  border-radius: 12px;
+  background-color: var(--main-color);
+  border-color: transparent;
+  color: var(--text-color-primary);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.bg {
+  flex-grow: 1;
+  min-width: 568px;
+  border-radius: 30px;
+  background: url("/img/mac.png") no-repeat bottom,
+    url("/img/girl.png") no-repeat 50% 44%;
+  background-color: var(--bg-color-hero);
+}

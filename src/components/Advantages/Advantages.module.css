@@ -1,0 +1,33 @@
+.section {
+  padding: 40px 123px 44px;
+  border-radius: 30px;
+  border: 1.5px dashed #9fbaae;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.item span {
+  color: var(--text-color-primary);
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.14;
+  letter-spacing: -0.56px;
+}
+
+.item p {
+  width: 96px;
+  color: rgba(18, 20, 23, 0.7);
+  font-size: 14px;
+  line-height: 1.28;
+  letter-spacing: -0.28px;
+}

@@ -1,5 +1,13 @@
+import Advantages from "../../components/Advantages/Advantages";
+import Hero from "../../components/Hero/Hero";
+
 const HomePage = () => {
-  return <div></div>;
+  return (
+    <main>
+      <Hero />
+      <Advantages />
+    </main>
+  );
 };
 
 export default HomePage;
