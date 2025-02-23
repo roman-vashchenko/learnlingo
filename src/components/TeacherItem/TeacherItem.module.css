@@ -1,0 +1,145 @@
+.card {
+  display: flex;
+  gap: 48px;
+  padding: 24px;
+  border-radius: 24px;
+  background-color: #fff;
+}
+
+.avatarWrapper {
+  width: 120px;
+}
+
+.avatar {
+  width: 96px;
+  height: 96px;
+  background-color: var(--main-color);
+  border-radius: 50%;
+}
+
+.content {
+  flex-grow: 1;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.label {
+  color: var(--text-color-secondary);
+  font-weight: 500;
+  margin-right: auto;
+}
+
+.statisticsList {
+  display: flex;
+  gap: 32px;
+  color: var(--text-color-primary);
+  font-weight: 500;
+  line-height: inherit;
+}
+
+.statisticsListItem {
+  position: relative;
+}
+
+.statisticsListItem:not(:last-child)::after {
+  position: absolute;
+  top: 0;
+  right: -16px;
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 16px;
+  background-color: rgba(18, 20, 23, 0.2);
+}
+
+.icon {
+  margin-left: 64px;
+  fill: white;
+  stroke-width: 2px;
+  stroke: black;
+  cursor: pointer;
+}
+
+.name {
+  margin-bottom: 32px;
+  color: var(--text-color-primary);
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.descriptionList {
+  margin-bottom: 16px;
+  color: var(--text-color-primary);
+  font-weight: 500;
+}
+
+.descriptionListItem:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.descriptionList span {
+  color: var(--text-color-secondary);
+  font-weight: 500;
+}
+
+span.languages {
+  text-decoration-line: underline;
+  color: var(--text-color-primary);
+}
+
+.btnReadMore {
+  margin-bottom: 32px;
+  padding: 0;
+  color: var(--text-color-primary);
+  font-weight: 500;
+  text-decoration-line: underline;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.descriptionText {
+  margin-bottom: 32px;
+  color: var(--text-color-primary);
+}
+
+.comentList {
+  margin-bottom: 32px;
+}
+
+.commentItem:not(:last-child) {
+  margin-bottom: 32px;
+}
+
+.commentItemWrap {
+  display: inline-flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.commentItemAvatar {
+  width: 44px;
+  height: 44px;
+  background-color: var(--main-color);
+  border-radius: 50%;
+}
+
+.languageLevelList {
+  display: flex;
+  gap: 8px;
+}
+
+.languageLevelListItem {
+  padding: 8px 12px;
+  border-radius: 35px;
+  border: 1px solid rgba(18, 20, 23, 0.2);
+  color: var(--text-color-primary);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.14;
+}

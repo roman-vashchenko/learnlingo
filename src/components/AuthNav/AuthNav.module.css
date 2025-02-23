@@ -12,6 +12,7 @@
   border-color: transparent;
   color: var(--text-color-primary);
   font-weight: 700;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .registrationBtn {
@@ -20,4 +21,12 @@
   background-color: var(--text-color-primary);
   color: #fff;
   font-weight: 700;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logInBtn:hover,
+.registrationBtn:hover,
+.registrationBtn:focus,
+.logInBtn:focus {
+  color: #91d1d1;
 }

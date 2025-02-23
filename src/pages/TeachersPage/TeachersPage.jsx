@@ -1,8 +1,8 @@
 import FilterBar from "../../components/FilterBar/FilterBar";
 import TeachersList from "../../components/TeachersList/TeachersList";
-import css from "./Teachers.module.css";
+import css from "./TeachersPage.module.css";
 
-const Teachers = () => {
+const TeachersPage = () => {
   return (
     <section className={css.section}>
       <FilterBar />
@@ -11,4 +11,4 @@ const Teachers = () => {
   );
 };
 
-export default Teachers;
+export default TeachersPage;

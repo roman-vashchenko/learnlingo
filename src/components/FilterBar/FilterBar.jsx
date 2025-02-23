@@ -18,7 +18,7 @@ const FilterBar = () => {
       </div>
       <div className={css.fieldFilter}>
         <svg width={20} height={20}>
-          <use href="/public/img/icons.svg#icon-drop"></use>
+          <use href="/img/icons.svg#icon-drop"></use>
         </svg>
         <label htmlFor="levelOfKnowledge">Level of knowledge</label>
         <select name="levelOfKnowledge" id="levelOfKnowledge">
