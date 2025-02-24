@@ -6,7 +6,7 @@ const LanguageLevelList = () => {
       <li
         className={css.languageLevelListItem}
         style={{
-          backgroundColor: "#F4C550",
+          backgroundColor: "#9fb7ce",
           borderColor: "transparent",
         }}
       >

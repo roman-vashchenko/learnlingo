@@ -10,6 +10,8 @@ const customStyles = {
     maxWidth: "600px",
     padding: "64px",
     boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
+    bordeaRadius: "30px",
+    backgroundColor: "#FFF",
   },
 };
 
