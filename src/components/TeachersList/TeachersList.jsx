@@ -1,11 +1,12 @@
 import TeacherItem from "../TeacherItem/TeacherItem";
+import css from "./TeachersList.module.css";
 
-const TeachersList = () => {
+const TeachersList = ({ openModal }) => {
   return (
     <div>
-      <ul>
+      <ul className={css.list}>
         <li>
-          <TeacherItem />
+          <TeacherItem openModal={openModal} />
         </li>
       </ul>
     </div>

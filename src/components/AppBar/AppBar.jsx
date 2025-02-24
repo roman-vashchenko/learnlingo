@@ -3,12 +3,12 @@ import Logo from "../Logo/Logo";
 import NavBar from "../NavBar/NavBar";
 import css from "./AppBar.module.css";
 
-const AppBar = () => {
+const AppBar = ({ openModal }) => {
   return (
     <header className={css.header}>
       <Logo />
       <NavBar />
-      <AuthNav />
+      <AuthNav openModal={openModal} />
     </header>
   );
 };

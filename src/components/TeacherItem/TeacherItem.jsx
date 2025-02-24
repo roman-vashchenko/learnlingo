@@ -1,8 +1,11 @@
 import { useState } from "react";
 import css from "./TeacherItem.module.css";
+import CommentList from "../CommentList/CommentList";
+import LanguageLevelList from "../LanguageLevelList/LanguageLevelList";
+import BtnBookTrialLesson from "../BtnBookTrialLesson/BtnBookTrialLesson";
 
-const TeacherItem = () => {
-  const [isHidden, setIsHidden] = useState(false);
+const TeacherItem = ({ openModal }) => {
+  const [isHidden, setIsHidden] = useState(true);
 
   return (
     <div className={css.card}>
@@ -71,7 +74,7 @@ const TeacherItem = () => {
             </p>
           </li>
         </ul>
-        {!isHidden && (
+        {isHidden && (
           <button
             type="button"
             className={css.btnReadMore}
@@ -82,7 +85,7 @@ const TeacherItem = () => {
             Read more
           </button>
         )}
-        {isHidden && (
+        {!isHidden && (
           <div className={css.hiddenСontent}>
             <p className={css.descriptionText}>
               Jane is an experienced and dedicated language teacher specializing
@@ -97,71 +100,11 @@ const TeacherItem = () => {
               they feel supported and motivated throughout their language
               journey.
             </p>
-            <ul className={css.comentList}>
-              <li className={css.commentItem}>
-                <div className={css.commentItemWrap}>
-                  <div className={css.commentItemAvatar}></div>
-                  <div>
-                    <p className={css.commentItemName}>Frank</p>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "8px",
-                      }}
-                    >
-                      <svg width={16} height={16}>
-                        <use href="/img/icons.svg#icon-star"></use>
-                      </svg>
-                      <span className={css.commentRating}>4.0</span>
-                    </div>
-                  </div>
-                </div>
-                <p className={css.commentItemText}>
-                  Jane&apos;s lessons were very helpful. I made good progress.
-                </p>
-              </li>
-              <li className={css.commentItem}>
-                <div className={css.commentItemWrap}>
-                  <div className={css.commentItemAvatar}></div>
-                  <div>
-                    <p className={css.commentItemName}>Eve</p>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "8px",
-                      }}
-                    >
-                      <svg width={16} height={16}>
-                        <use href="/img/icons.svg#icon-star"></use>
-                      </svg>
-                      <span className={css.commentRating}>5.0</span>
-                    </div>
-                  </div>
-                </div>
-                <p className={css.commentItemText}>
-                  Jane is an amazing teacher! She is patient and supportive.
-                </p>
-              </li>
-            </ul>
+            <CommentList />
           </div>
         )}
-
-        <ul className={css.languageLevelList}>
-          <li
-            className={css.languageLevelListItem}
-            style={{
-              backgroundColor: "#F4C550",
-              borderColor: "transparent",
-            }}
-          >
-            #A1 Beginner
-          </li>
-          <li className={css.languageLevelListItem}>#A2 Elementary</li>
-          <li className={css.languageLevelListItem}>#B1 Intermediate</li>
-          <li className={css.languageLevelListItem}>#B2 Upper-Intermediate</li>
-        </ul>
+        <LanguageLevelList />
+        {!isHidden && <BtnBookTrialLesson openModal={openModal} />}
       </div>
     </div>
   );

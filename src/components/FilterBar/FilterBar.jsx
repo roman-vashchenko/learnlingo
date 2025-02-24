@@ -5,7 +5,7 @@ const FilterBar = () => {
     <div className={css.wrapper}>
       <div className={css.fieldFilter}>
         <svg width={20} height={20}>
-          <use href="/public/img/icons.svg#icon-drop"></use>
+          <use href="/img/icons.svg#icon-drop"></use>
         </svg>
         <label htmlFor="languages">Languages</label>
         <select name="languages" id="languages">
@@ -16,7 +16,7 @@ const FilterBar = () => {
           <option value="polish">Polish</option>
         </select>
       </div>
-      <div className={css.fieldFilter}>
+      <div className={css.fieldFilter} style={{ width: "235px" }}>
         <svg width={20} height={20}>
           <use href="/img/icons.svg#icon-drop"></use>
         </svg>
@@ -28,7 +28,7 @@ const FilterBar = () => {
           <option value="b2UpperIntermediate">B2 Upper-Intermediate</option>
         </select>
       </div>
-      <div style={{ width: 124 }} className={css.fieldFilter}>
+      <div style={{ width: "124px" }} className={css.fieldFilter}>
         <svg width={20} height={20}>
           <use href="/public/img/icons.svg#icon-drop"></use>
         </svg>

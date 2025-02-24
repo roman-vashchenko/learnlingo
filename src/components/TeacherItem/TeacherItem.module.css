@@ -107,39 +107,3 @@ span.languages {
   margin-bottom: 32px;
   color: var(--text-color-primary);
 }
-
-.comentList {
-  margin-bottom: 32px;
-}
-
-.commentItem:not(:last-child) {
-  margin-bottom: 32px;
-}
-
-.commentItemWrap {
-  display: inline-flex;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.commentItemAvatar {
-  width: 44px;
-  height: 44px;
-  background-color: var(--main-color);
-  border-radius: 50%;
-}
-
-.languageLevelList {
-  display: flex;
-  gap: 8px;
-}
-
-.languageLevelListItem {
-  padding: 8px 12px;
-  border-radius: 35px;
-  border: 1px solid rgba(18, 20, 23, 0.2);
-  color: var(--text-color-primary);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.14;
-}

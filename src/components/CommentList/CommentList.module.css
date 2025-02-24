@@ -1,0 +1,20 @@
+.comentList {
+  margin-bottom: 32px;
+}
+
+.commentItem:not(:last-child) {
+  margin-bottom: 32px;
+}
+
+.commentItemWrap {
+  display: inline-flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.commentItemAvatar {
+  width: 44px;
+  height: 44px;
+  background-color: var(--main-color);
+  border-radius: 50%;
+}
