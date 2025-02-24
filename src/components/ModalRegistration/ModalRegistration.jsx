@@ -11,7 +11,7 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
     width: "566px",
     padding: "64px",
-    bordeaRadius: "30px",
+    borderRadius: "30px",
     backgroundColor: "#FFF",
   },
 };
