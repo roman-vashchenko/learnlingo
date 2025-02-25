@@ -4,9 +4,9 @@ const FilterBar = () => {
   return (
     <div className={css.wrapper}>
       <div className={css.fieldFilter}>
-        <svg width={20} height={20}>
+        {/* <svg width={20} height={20}>
           <use href="/img/icons.svg#icon-drop"></use>
-        </svg>
+        </svg> */}
         <label htmlFor="languages">Languages</label>
         <select name="languages" id="languages">
           <option value="french">French</option>
@@ -15,6 +15,9 @@ const FilterBar = () => {
           <option value="ukrainian">Ukrainian</option>
           <option value="polish">Polish</option>
         </select>
+        <svg width={20} height={20}>
+          <use href="/img/icons.svg#icon-drop"></use>
+        </svg>
       </div>
       <div className={css.fieldFilter} style={{ width: "235px" }}>
         <svg width={20} height={20}>

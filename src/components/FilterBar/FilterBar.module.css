@@ -22,7 +22,8 @@
   position: absolute;
   top: 50%;
   right: 14px;
-  rotate: 180deg;
+  transform: rotate(180deg);
+  transform-origin: center;
   pointer-events: none;
 }
 
@@ -47,4 +48,5 @@
 
 .fieldFilter option:checked {
   color: var(--text-color-primary);
+  font-weight: 500;
 }

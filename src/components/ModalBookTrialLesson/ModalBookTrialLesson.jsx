@@ -1,17 +1,27 @@
 import { useEffect } from "react";
 import ReactModal from "react-modal";
 
-ReactModal.defaultStyles.overlay.backgroundColor = "rgba(0, 0, 0, 0.7)";
 ReactModal.setAppElement("#root");
 
 const customStyles = {
+  overlay: {
+    position: "fixed",
+    inset: 0,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    overflowY: "auto",
+    padding: "150px 0",
+  },
   content: {
-    margin: "0 auto",
+    position: "relative",
+    inset: "0px",
     maxWidth: "600px",
+    width: "100%",
     padding: "64px",
-    boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
     borderRadius: "30px",
     backgroundColor: "#FFF",
+    margin: "auto",
   },
 };
 
@@ -29,7 +39,12 @@ const ModalBookTrialLesson = ({ isOpen, onClose }) => {
   }, [isOpen]);
   return (
     <div>
-      <ReactModal isOpen={isOpen} onRequestClose={onClose} style={customStyles}>
+      <ReactModal
+        isOpen={isOpen}
+        onRequestClose={onClose}
+        style={customStyles}
+        bodyOpenClassName="true"
+      >
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
           libero, cum voluptatibus, vitae id quod exercitationem quo debitis
