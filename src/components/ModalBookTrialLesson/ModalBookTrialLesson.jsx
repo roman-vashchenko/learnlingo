@@ -1,5 +1,11 @@
 import { useEffect } from "react";
 import ReactModal from "react-modal";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+
+import css from "./ModalBookTrialLesson.module.css";
 
 ReactModal.setAppElement("#root");
 
@@ -16,8 +22,7 @@ const customStyles = {
   content: {
     position: "relative",
     inset: "0px",
-    maxWidth: "600px",
-    width: "100%",
+    width: "600px",
     padding: "64px",
     borderRadius: "30px",
     backgroundColor: "#FFF",
@@ -31,10 +36,12 @@ const ModalBookTrialLesson = ({ isOpen, onClose }) => {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
+      document.body.removeAttribute("style");
     }
 
     return () => {
       document.body.style.overflow = "";
+      document.body.removeAttribute("style");
     };
   }, [isOpen]);
   return (
@@ -43,71 +50,109 @@ const ModalBookTrialLesson = ({ isOpen, onClose }) => {
         isOpen={isOpen}
         onRequestClose={onClose}
         style={customStyles}
-        bodyOpenClassName="true"
+        bodyOpenClassName={null}
       >
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-          libero, cum voluptatibus, vitae id quod exercitationem quo debitis
-          tempora inventore illum odio aspernatur sapiente fuga optio.
-          Repellendus hic quibusdam dolorum accusamus, vero dolore deleniti
-          excepturi mollitia explicabo omnis sapiente dolorem expedita ea
-          temporibus, debitis asperiores eius ratione molestiae eligendi alias
-          repellat officia nemo. Natus, temporibus? Saepe temporibus, quo magnam
-          fugiat eius porro sapiente incidunt, dolor consectetur eligendi iure
-          ducimus, quia doloremque illo minima possimus reiciendis. In
-          voluptatibus animi quisquam consectetur debitis est perspiciatis
-          dignissimos dolorum tempore, autem iusto? Natus beatae inventore
-          voluptatum sit ea commodi cum, voluptate magni reiciendis, aut itaque,
-          nihil nostrum. Illum molestias hic unde asperiores. Alias possimus
-          sint, atque nulla neque aperiam culpa. Error debitis saepe itaque
-          minima consequuntur sit enim! Rem illum commodi amet! Asperiores
-          perferendis dolorum inventore unde, natus reiciendis commodi saepe
-          omnis? Sunt id magnam quasi ullam dolorum non nemo, alias voluptatibus
-          rerum soluta in. Minima laudantium consequuntur voluptas distinctio
-          illum ex officia accusantium quasi quia, nostrum optio reiciendis
-          accusamus necessitatibus numquam perferendis nobis rem consectetur
-          debitis cumque sed asperiores obcaecati odio officiis! Velit saepe
-          consequuntur pariatur totam laborum dolores doloremque debitis magni
-          id minima eos quas quasi qui eveniet dolorum aut possimus ratione
-          placeat nobis, hic dignissimos nostrum eaque? Nisi dolor suscipit ut?
-          Fuga veniam, praesentium rerum voluptates amet voluptas vitae
-          mollitia, sunt id qui voluptatum? Quasi nesciunt assumenda quaerat
-          harum. Nesciunt quos similique natus fuga fugit facere est
-          perspiciatis deserunt dicta odit tenetur reiciendis, itaque illo ipsa
-          quam aliquid ea minus? Tempora. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Officiis libero, cum voluptatibus, vitae id quod
-          exercitationem quo debitis tempora inventore illum odio aspernatur
-          sapiente fuga optio. Repellendus hic quibusdam dolorum accusamus, vero
-          dolore deleniti excepturi mollitia explicabo omnis sapiente dolorem
-          expedita ea temporibus, debitis asperiores eius ratione molestiae
-          eligendi alias repellat officia nemo. Natus, temporibus? Saepe
-          temporibus, quo magnam fugiat eius porro sapiente incidunt, dolor
-          consectetur eligendi iure ducimus, quia doloremque illo minima
-          mollitia, sunt id qui voluptatum? Quasi nesciunt assumenda quaerat
-          harum. Nesciunt quos similique natus fuga fugit facere est
-          perspiciatis deserunt dicta odit tenetur reiciendis, itaque illo ipsa
-          quam aliquid ea minus? Tempora. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Officiis libero, cum voluptatibus, vitae id quod
-          exercitationem quo debitis tempora inventore illum odio aspernatur
-          sapiente fuga optio. Repellendus hic quibusdam dolorum accusamus, vero
-          dolore deleniti excepturi mollitia explicabo omnis sapiente dolorem
-          expedita ea temporibus, debitis asperiores eius ratione molestiae
-          eligendi alias repellat officia nemo. Natus, temporibus? Saepe
-          temporibus, quo magnam fugiat eius porro sapiente incidunt, dolor
-          consectetur eligendi iure ducimus, quia doloremque illo minima
-          mollitia, sunt id qui voluptatum? Quasi nesciunt assumenda quaerat
-          harum. Nesciunt quos similique natus fuga fugit facere est
-          perspiciatis deserunt dicta odit tenetur reiciendis, itaque illo ipsa
-          quam aliquid ea minus? Tempora. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Officiis libero, cum voluptatibus, vitae id quod
-          exercitationem quo debitis tempora inventore illum odio aspernatur
-          sapiente fuga optio. Repellendus hic quibusdam dolorum accusamus, vero
-          dolore deleniti excepturi mollitia explicabo omnis sapiente dolorem
-          expedita ea temporibus, debitis asperiores eius ratione molestiae
-          eligendi alias repellat officia nemo. Natus, temporibus? Saepe
-          temporibus, quo magnam fugiat eius porro sapiente incidunt, dolor
-          consectetur eligendi iure ducimus, quia doloremque illo minima
+        <svg width={32} height={32} className={css.icon} onClick={onClose}>
+          <use href="/img/icons.svg#icon-close"></use>
+        </svg>
+        <p className={css.title}>Book trial lesson</p>
+        <p className={css.text}>
+          Our experienced tutor will assess your current language level, discuss
+          your learning goals, and tailor the lesson to your specific needs.
         </p>
+        <div className={css.teacherCard}>
+          <div className={css.avatarTeacher}></div>
+          <div className={css.wrapper}>
+            <span>Your teacher</span>
+            <p className={css.nameTeacher}>Jane Smith</p>
+          </div>
+        </div>
+        <form className={css.form}>
+          <FormControl>
+            <p className={css.questionText}>
+              What is your main reason for learning English?
+            </p>
+            <RadioGroup
+              aria-labelledby="demo-radio-buttons-group-label"
+              defaultValue="CareerAndBusiness"
+              name="radio-buttons-group"
+            >
+              <FormControlLabel
+                value="CareerAndBusiness"
+                control={
+                  <Radio
+                    sx={{
+                      "&.Mui-checked": {
+                        color: "#9fb7ce",
+                      },
+                    }}
+                  />
+                }
+                label="Career and business"
+              />
+              <FormControlLabel
+                value="LessonForKids"
+                control={
+                  <Radio
+                    sx={{
+                      "&.Mui-checked": {
+                        color: "#9fb7ce",
+                      },
+                    }}
+                  />
+                }
+                label="Lesson for kids"
+              />
+              <FormControlLabel
+                value="LivingAbroad"
+                control={
+                  <Radio
+                    sx={{
+                      "&.Mui-checked": {
+                        color: "#9fb7ce",
+                      },
+                    }}
+                  />
+                }
+                label="Living abroad"
+              />
+              <FormControlLabel
+                value="ExamsAndCoursework"
+                control={
+                  <Radio
+                    sx={{
+                      "&.Mui-checked": {
+                        color: "#9fb7ce",
+                      },
+                    }}
+                  />
+                }
+                label="Exams and coursework"
+              />
+              <FormControlLabel
+                value="CultureTravelOrHobby"
+                control={
+                  <Radio
+                    sx={{
+                      "&.Mui-checked": {
+                        color: "#9fb7ce",
+                      },
+                    }}
+                  />
+                }
+                label="Culture, travel or hobby"
+              />
+            </RadioGroup>
+          </FormControl>
+          <div className={css.wrap}>
+            <input type="text" name="name" placeholder="Full Name" />
+            <input type="text" name="email" placeholder="Email" />
+            <input type="phone" name="phoneNumber" placeholder="Phone number" />
+          </div>
+          <button type="submit" className={css.btn}>
+            Sign Up
+          </button>
+        </form>
       </ReactModal>
     </div>
   );

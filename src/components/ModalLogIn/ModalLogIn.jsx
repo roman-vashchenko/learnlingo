@@ -5,15 +5,22 @@ import css from "./ModalLogIn.module.css";
 ReactModal.setAppElement("#root");
 
 const customStyles = {
+  overlay: {
+    position: "fixed",
+    inset: 0,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    overflowY: "auto",
+  },
   content: {
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
+    position: "relative",
+    inset: "0px",
     width: "566px",
-    height: "506px",
     padding: "64px",
     borderRadius: "30px",
     backgroundColor: "#FFF",
+    margin: "auto",
   },
 };
 
@@ -23,15 +30,25 @@ const ModalLogIn = ({ isOpen, onClose }) => {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
+      document.body.removeAttribute("style");
     }
 
     return () => {
       document.body.style.overflow = "";
+      document.body.removeAttribute("style");
     };
   }, [isOpen]);
   return (
     <div>
-      <ReactModal isOpen={isOpen} onRequestClose={onClose} style={customStyles}>
+      <ReactModal
+        isOpen={isOpen}
+        onRequestClose={onClose}
+        style={customStyles}
+        bodyOpenClassName={null}
+      >
+        <svg width={32} height={32} className={css.icon} onClick={onClose}>
+          <use href="/img/icons.svg#icon-close"></use>
+        </svg>
         <p className={css.title}>Log In</p>
         <p className={css.text}>
           Welcome back! Please enter your credentials to access your account and
