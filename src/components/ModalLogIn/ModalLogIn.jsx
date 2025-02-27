@@ -1,6 +1,10 @@
 import { useEffect } from "react";
 import ReactModal from "react-modal";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import css from "./ModalLogIn.module.css";
+import { addBlockOnBody } from "../../helpers/addBlockOnBody";
 
 ReactModal.setAppElement("#root");
 
@@ -24,20 +28,33 @@ const customStyles = {
   },
 };
 
+const schema = yup
+  .object({
+    email: yup.string().max(50).required(),
+    password: yup.string().min(7).required(),
+  })
+  .required();
+
 const ModalLogIn = ({ isOpen, onClose }) => {
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-      document.body.removeAttribute("style");
-    }
-
+    addBlockOnBody(isOpen);
     return () => {
       document.body.style.overflow = "";
       document.body.removeAttribute("style");
     };
   }, [isOpen]);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+  const onSubmit = () => {
+    onClose();
+  };
+
   return (
     <div>
       <ReactModal
@@ -54,10 +71,22 @@ const ModalLogIn = ({ isOpen, onClose }) => {
           Welcome back! Please enter your credentials to access your account and
           continue your search for an teacher.
         </p>
-        <form className={css.form}>
+        <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={css.wrapper}>
-            <input type="text" name="email" placeholder="Email" />
-            <input type="password" name="password" placeholder="Password" />
+            <input
+              type="text"
+              name="email"
+              placeholder="Email"
+              {...register("email")}
+            />
+            <p style={{ color: "red" }}>{errors.email?.message}</p>
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              {...register("password")}
+            />
+            <p style={{ color: "red" }}>{errors.password?.message}</p>
           </div>
           <button type="submit" className={css.btn}>
             Log In

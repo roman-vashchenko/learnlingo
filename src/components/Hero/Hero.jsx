@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import css from "./Hero.module.css";
 
 const Hero = () => {
@@ -12,9 +13,9 @@ const Hero = () => {
           Elevate your <span>language</span> proficiency to new heights by
           connecting with highly qualified and experienced tutors.
         </p>
-        <button type="button" className={css.btn}>
+        <Link to="/teachers" className={css.btn}>
           Get started
-        </button>
+        </Link>
       </div>
       <div className={css.bg}></div>
     </section>
