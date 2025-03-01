@@ -1,27 +1,23 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import BtnLoadMore from "../../components/BtnLoadMore/BtnLoadMore";
 import FilterBar from "../../components/FilterBar/FilterBar";
-import ModalBookTrialLesson from "../../components/ModalBookTrialLesson/ModalBookTrialLesson";
 import TeachersList from "../../components/TeachersList/TeachersList";
 import css from "./TeachersPage.module.css";
+import { useDispatch } from "react-redux";
+import { fetchTeachers } from "../../redux/teachers/operations";
 
 const TeachersPage = () => {
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const handleCloseModal = () => {
-    setIsOpen(false);
-  };
+  const dispatch = useDispatch();
 
-  const handleOpenModal = () => {
-    setIsOpen(true);
-  };
+  useEffect(() => {
+    dispatch(fetchTeachers());
+  }, [dispatch]);
+
   return (
     <section className={css.section}>
       <FilterBar />
-      <TeachersList openModal={handleOpenModal} />
+      <TeachersList />
       <BtnLoadMore />
-      {modalIsOpen && (
-        <ModalBookTrialLesson isOpen onClose={handleCloseModal} />
-      )}
     </section>
   );
 };

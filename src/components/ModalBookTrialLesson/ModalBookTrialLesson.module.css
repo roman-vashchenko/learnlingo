@@ -24,19 +24,17 @@
 .text {
   margin-bottom: 20px;
   color: rgba(18, 20, 23, 0.8);
-  line-height: 1.37; /* 137.5% */
+  line-height: 1.37;
 }
 
 .teacherCard {
   display: flex;
   justify-content: space-between;
-  width: 139px;
+  width: 155px;
   margin-bottom: 40px;
 }
 
 .avatarTeacher {
-  width: 44px;
-  height: 44px;
   border-radius: 50%;
   background-color: var(--main-color);
 }

@@ -1,20 +1,13 @@
 import css from "./LanguageLevelList.module.css";
 
-const LanguageLevelList = () => {
+const LanguageLevelList = ({ levels }) => {
   return (
     <ul className={css.languageLevelList}>
-      <li
-        className={css.languageLevelListItem}
-        style={{
-          backgroundColor: "#9fb7ce",
-          borderColor: "transparent",
-        }}
-      >
-        #A1 Beginner
-      </li>
-      <li className={css.languageLevelListItem}>#A2 Elementary</li>
-      <li className={css.languageLevelListItem}>#B1 Intermediate</li>
-      <li className={css.languageLevelListItem}>#B2 Upper-Intermediate</li>
+      {levels.map((level, idx) => (
+        <li key={idx} className={css.languageLevelListItem}>
+          {level}
+        </li>
+      ))}
     </ul>
   );
 };

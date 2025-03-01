@@ -42,7 +42,7 @@ const schema = yup
   })
   .required();
 
-const ModalBookTrialLesson = ({ isOpen, onClose }) => {
+const ModalBookTrialLesson = ({ isOpen, onClose, name, surname, avatar }) => {
   useEffect(() => {
     addBlockOnBody(isOpen);
     return () => {
@@ -80,10 +80,18 @@ const ModalBookTrialLesson = ({ isOpen, onClose }) => {
           your learning goals, and tailor the lesson to your specific needs.
         </p>
         <div className={css.teacherCard}>
-          <div className={css.avatarTeacher}></div>
+          <img
+            src={avatar}
+            alt={name}
+            className={css.avatarTeacher}
+            width={44}
+            height={44}
+          />
           <div className={css.wrapper}>
             <span>Your teacher</span>
-            <p className={css.nameTeacher}>Jane Smith</p>
+            <p className={css.nameTeacher}>
+              {name} {surname}
+            </p>
           </div>
         </div>
         <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
