@@ -87,7 +87,7 @@ const ModalRegistration = ({ isOpen, onClose }) => {
             />
             <p style={{ color: "red" }}>{errors.name?.message}</p>
             <input
-              type="text"
+              type="email"
               name="email"
               placeholder="Email"
               {...register("email")}

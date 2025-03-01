@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
@@ -25,7 +26,6 @@ export const registerUser = createAsyncThunk(
       });
       const userRef = ref(db, `users/${user.uid}`);
       const snapshot = await get(userRef);
-
       const userData = snapshot.val();
       return userData;
     } catch (error) {
@@ -64,5 +64,27 @@ export const logOut = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error.message);
     }
+  }
+);
+
+export const refreshUser = createAsyncThunk(
+  "auth/refresh",
+  async (_, thunkAPI) => {
+    return new Promise((resolve) => {
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          try {
+            const userRef = ref(db, `users/${user.uid}`);
+            const snapshot = await get(userRef);
+            const userData = snapshot.val();
+            resolve(userData);
+          } catch (error) {
+            resolve(thunkAPI.rejectWithValue(error.message));
+          }
+        } else {
+          resolve(null);
+        }
+      });
+    });
   }
 );

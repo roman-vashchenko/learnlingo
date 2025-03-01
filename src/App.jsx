@@ -1,12 +1,23 @@
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import HomePage from "./pages/HomePage/HomePage";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 import TeachersPage from "./pages/TeachersPage/TeachersPage";
+import { useDispatch, useSelector } from "react-redux";
+import { refreshUser } from "./redux/auth/operations";
+import { selectAuth } from "./redux/auth/selectors";
 
 function App() {
-  return (
+  const dispatch = useDispatch();
+  const { isRefreshing } = useSelector(selectAuth);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+  return isRefreshing ? (
+    <b>Refreshing user...</b>
+  ) : (
     <div>
       <Suspense>
         <Routes>
