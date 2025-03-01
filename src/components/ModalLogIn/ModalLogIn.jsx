@@ -5,6 +5,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import css from "./ModalLogIn.module.css";
 import { addBlockOnBody } from "../../helpers/addBlockOnBody";
+import { useDispatch } from "react-redux";
+import { logIn } from "../../redux/auth/operations";
 
 ReactModal.setAppElement("#root");
 
@@ -36,6 +38,7 @@ const schema = yup
   .required();
 
 const ModalLogIn = ({ isOpen, onClose }) => {
+  const dispatch = useDispatch();
   useEffect(() => {
     addBlockOnBody(isOpen);
     return () => {
@@ -51,7 +54,8 @@ const ModalLogIn = ({ isOpen, onClose }) => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = () => {
+  const onSubmit = (data) => {
+    dispatch(logIn(data));
     onClose();
   };
 

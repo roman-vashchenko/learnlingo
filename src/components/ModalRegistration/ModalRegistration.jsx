@@ -5,6 +5,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import css from "./ModalRegistration.module.css";
 import { addBlockOnBody } from "../../helpers/addBlockOnBody";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../redux/auth/operations";
 
 ReactModal.defaultStyles.overlay.backgroundColor = "rgba(0, 0, 0, 0.7)";
 ReactModal.setAppElement("#root");
@@ -37,6 +39,7 @@ const schema = yup
   .required();
 
 const ModalRegistration = ({ isOpen, onClose }) => {
+  const dispatch = useDispatch();
   useEffect(() => {
     addBlockOnBody(isOpen);
     return () => {
@@ -52,7 +55,8 @@ const ModalRegistration = ({ isOpen, onClose }) => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = () => {
+  const onSubmit = (data) => {
+    dispatch(registerUser(data));
     onClose();
   };
 
