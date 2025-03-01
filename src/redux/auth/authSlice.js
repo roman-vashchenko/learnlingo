@@ -52,12 +52,10 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        if (action.payload) {
-          state.isLoggedIn = true;
-          state.user = action.payload;
-          state.isRefreshing = false;
-          state.isLoading = false;
-        }
+        state.isLoggedIn = true;
+        state.user = action.payload;
+        state.isRefreshing = false;
+        state.isLoading = false;
       })
       .addCase(refreshUser.rejected, (state, action) => {
         state.isRefreshing = false;
