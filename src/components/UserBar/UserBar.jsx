@@ -8,7 +8,7 @@ const UserBar = () => {
 
   return (
     <div>
-      <p>Hello!{user?.name}</p>
+      <p>Hello!{user.name}</p>
       <button
         type="button"
         onClick={() => {
