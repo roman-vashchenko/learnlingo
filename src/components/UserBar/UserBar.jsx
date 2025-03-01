@@ -5,6 +5,9 @@ import { logOut } from "../../redux/auth/operations";
 const UserBar = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
+  if (!user) {
+    return <p>Loading...</p>; // або повернути іншу відповідь, якщо user ще не завантажений
+  }
 
   return (
     <div>
