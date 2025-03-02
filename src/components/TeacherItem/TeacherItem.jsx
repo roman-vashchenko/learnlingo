@@ -4,8 +4,11 @@ import CommentList from "../CommentList/CommentList";
 import LanguageLevelList from "../LanguageLevelList/LanguageLevelList";
 import BtnBookTrialLesson from "../BtnBookTrialLesson/BtnBookTrialLesson";
 import ModalBookTrialLesson from "../ModalBookTrialLesson/ModalBookTrialLesson";
+import { addFavoriteTeacher } from "../../redux/teachers/operations";
+import { useDispatch } from "react-redux";
 
-const TeacherItem = ({ teacher }) => {
+const TeacherItem = ({ teacher, idx }) => {
+  const dispatch = useDispatch();
   const [isHidden, setIsHidden] = useState(true);
   const [modalIsOpen, setIsOpen] = useState(false);
   const handleCloseModal = () => {
@@ -69,9 +72,17 @@ const TeacherItem = ({ teacher }) => {
               </span>
             </li>
           </ul>
-          <svg width={26} height={26} className={css.icon}>
-            <use href="/img/icons.svg#icon-favorite-transparent-1"></use>
-          </svg>
+          <button
+            type="button"
+            className={css.btnFvorite}
+            onClick={() => {
+              dispatch(addFavoriteTeacher({ teacher, idx }));
+            }}
+          >
+            <svg width={26} height={26} className={css.icon}>
+              <use href="/img/icons.svg#icon-favorite-transparent-1"></use>
+            </svg>
+          </button>
         </div>
         <p className={css.name}>
           {teacher.name} {teacher.surname}

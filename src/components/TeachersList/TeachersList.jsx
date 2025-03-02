@@ -11,7 +11,7 @@ const TeachersList = () => {
         {teachers.length > 0 &&
           teachers.map((teacher, idx) => (
             <li key={idx}>
-              <TeacherItem teacher={teacher} />
+              <TeacherItem teacher={teacher} idx={idx} />
             </li>
           ))}
       </ul>
