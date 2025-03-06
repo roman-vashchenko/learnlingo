@@ -22,7 +22,7 @@ const TeachersList = ({ primary, secondary }) => {
         </ul>
       )}
       {secondary === "secondary" && (
-        <ul className={css.list}>
+        <ul className={css.list} style={{ marginBottom: "0" }}>
           {favoriteTeachers.length > 0 &&
             favoriteTeachers.map((teacher) => (
               <li key={teacher.id}>

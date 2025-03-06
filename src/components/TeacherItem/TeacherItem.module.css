@@ -69,8 +69,8 @@
 }
 
 .icon.isFavorite {
-  fill: "rgba(244, 197, 80, 1)";
-  stroke: "rgba(244, 197, 80, 1)";
+  fill: rgba(244, 197, 80, 1);
+  stroke: rgba(244, 197, 80, 1);
 }
 
 .name {
