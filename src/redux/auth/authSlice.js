@@ -16,7 +16,7 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(registerUser.fulfilled, (state, action) => {
-        state.isLoading = true;
+        state.isLoading = false;
         state.isLoggedIn = true;
         state.user = action.payload;
       })
@@ -28,13 +28,13 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(logIn.fulfilled, (state, action) => {
+        state.isLoggedIn = true;
         state.user = action.payload;
         state.isLoading = false;
-        state.isLoggedIn = true;
       })
       .addCase(logIn.rejected, (state, action) => {
-        state.isLoading = false;
         state.error = action.payload;
+        state.isLoading = false;
       })
       .addCase(logOut.pending, (state, action) => {
         state.error = action.payload;

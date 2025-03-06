@@ -7,6 +7,8 @@ import css from "./ModalRegistration.module.css";
 import { addBlockOnBody } from "../../helpers/addBlockOnBody";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../redux/auth/operations";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase/firebase";
 
 ReactModal.defaultStyles.overlay.backgroundColor = "rgba(0, 0, 0, 0.7)";
 ReactModal.setAppElement("#root");
@@ -55,9 +57,22 @@ const ModalRegistration = ({ isOpen, onClose }) => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = (data) => {
-    dispatch(registerUser(data));
-    onClose();
+  const onSubmit = async (data) => {
+    console.log(data);
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+      const user = userCredential.user;
+      console.log(user);
+      dispatch(registerUser({ name: data.name, user }));
+
+      onClose();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

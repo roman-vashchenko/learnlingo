@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchFavoriteTeachers, fetchTeachers } from "./operations";
+import {
+  addAndRemoveFavoriteTeacher,
+  fetchFavoriteTeachers,
+  fetchTeachers,
+} from "./operations";
 
 const teachersSlice = createSlice({
   name: "teachers",
@@ -23,13 +27,28 @@ const teachersSlice = createSlice({
         state.isLoader = false;
         state.error = payload;
       })
-      .addCase(fetchFavoriteTeachers.pending, (state) => {
+      .addCase(addAndRemoveFavoriteTeacher.pending, (state) => {
+        state.isLoader = true;
+      })
+      .addCase(addAndRemoveFavoriteTeacher.fulfilled, (state, { payload }) => {
         state.isLoader = false;
+        if (payload) {
+          state.favoriteItems = state.favoriteItems.filter(
+            (teacher) => teacher.id !== payload.id
+          );
+        }
+      })
+      .addCase(addAndRemoveFavoriteTeacher.rejected, (state) => {
+        state.isLoader = false;
+      })
+      .addCase(fetchFavoriteTeachers.pending, (state) => {
+        state.isLoader = true;
       })
       .addCase(fetchFavoriteTeachers.fulfilled, (state, { payload }) => {
         state.isLoader = false;
-        state.favoriteItems = [...payload];
-        console.log(state.favoriteItems);
+        if (payload) {
+          state.favoriteItems = payload;
+        }
       })
       .addCase(fetchFavoriteTeachers.rejected, (state, { payload }) => {
         state.isLoader = false;

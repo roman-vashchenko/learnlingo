@@ -7,6 +7,8 @@ import css from "./ModalLogIn.module.css";
 import { addBlockOnBody } from "../../helpers/addBlockOnBody";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/auth/operations";
+import { auth } from "../../firebase/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 ReactModal.setAppElement("#root");
 
@@ -54,9 +56,19 @@ const ModalLogIn = ({ isOpen, onClose }) => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = (data) => {
-    dispatch(logIn(data));
-    onClose();
+  const onSubmit = async (data) => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+      const user = userCredential.user;
+      dispatch(logIn({ user }));
+      onClose();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

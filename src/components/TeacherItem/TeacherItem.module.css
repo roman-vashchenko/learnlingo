@@ -68,6 +68,11 @@
   cursor: pointer;
 }
 
+.icon.isFavorite {
+  fill: "rgba(244, 197, 80, 1)";
+  stroke: "rgba(244, 197, 80, 1)";
+}
+
 .name {
   margin-bottom: 32px;
   color: var(--text-color-primary);

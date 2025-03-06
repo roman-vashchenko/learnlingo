@@ -4,13 +4,16 @@ import CommentList from "../CommentList/CommentList";
 import LanguageLevelList from "../LanguageLevelList/LanguageLevelList";
 import BtnBookTrialLesson from "../BtnBookTrialLesson/BtnBookTrialLesson";
 import ModalBookTrialLesson from "../ModalBookTrialLesson/ModalBookTrialLesson";
-import { addFavoriteTeacher } from "../../redux/teachers/operations";
-import { useDispatch } from "react-redux";
+import { addAndRemoveFavoriteTeacher } from "../../redux/teachers/operations";
+import { useDispatch, useSelector } from "react-redux";
+import { selectLoggedIn } from "../../redux/auth/selectors";
 
-const TeacherItem = ({ teacher, idx }) => {
+const TeacherItem = ({ teacher }) => {
   const dispatch = useDispatch();
   const [isHidden, setIsHidden] = useState(true);
   const [modalIsOpen, setIsOpen] = useState(false);
+  const isLoggedIn = useSelector(selectLoggedIn);
+
   const handleCloseModal = () => {
     setIsOpen(false);
   };
@@ -76,7 +79,9 @@ const TeacherItem = ({ teacher, idx }) => {
             type="button"
             className={css.btnFvorite}
             onClick={() => {
-              dispatch(addFavoriteTeacher({ teacher, idx }));
+              if (isLoggedIn) {
+                dispatch(addAndRemoveFavoriteTeacher({ teacher }));
+              }
             }}
           >
             <svg width={26} height={26} className={css.icon}>

@@ -16,7 +16,7 @@ const TeachersPage = () => {
   return (
     <section className={css.section}>
       <FilterBar />
-      <TeachersList />
+      <TeachersList primary={"primary"} />
       <BtnLoadMore />
     </section>
   );

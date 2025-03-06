@@ -21,26 +21,30 @@ export const fetchTeachers = createAsyncThunk(
   }
 );
 
-export const addFavoriteTeacher = createAsyncThunk(
+export const addAndRemoveFavoriteTeacher = createAsyncThunk(
   "teachers/addFavorite",
-  async ({ teacher, idx }, { rejectWithValue }) => {
+  async ({ teacher }, { rejectWithValue }) => {
     try {
       const userId = auth.currentUser.uid;
       const teachersRef = ref(db, `users/${userId}/favoriteTeachers`);
       const snapshot = await get(teachersRef);
-      const teachersData = snapshot.val();
+      const data = snapshot.val();
       const exists =
-        Array.isArray(teachersData) &&
-        teachersData.some((teacher) => teacher.id === idx);
+        data && Object.values(data).some((t) => t.id === teacher.id);
+
       if (exists) {
-        const teacherRef = ref(db, `users/${userId}/favoriteTeachers/${idx}`);
+        const teacherRef = ref(
+          db,
+          `users/${userId}/favoriteTeachers/${teacher.id}`
+        );
         await remove(teacherRef);
-        return;
+        return { ...teacher };
+      } else {
+        await set(ref(db, `users/${userId}/favoriteTeachers/${teacher.id}`), {
+          ...teacher,
+        });
+        return teacher;
       }
-      await set(ref(db, `users/${userId}/favoriteTeachers/${idx}`), {
-        id: idx,
-        ...teacher,
-      });
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -55,13 +59,11 @@ export const fetchFavoriteTeachers = createAsyncThunk(
 
       const teachersRef = ref(db, `users/${userId}/favoriteTeachers`);
       const snapshot = await get(teachersRef);
-      const teachersData = snapshot.val();
+      const data = snapshot.val();
 
-      const updatedTeachers = Array.isArray(teachersData)
-        ? teachersData.filter(Boolean)
-        : [];
+      const arrData = data ? Object.values(data) : [];
 
-      return updatedTeachers;
+      return arrData;
     } catch (error) {
       return rejectWithValue(error.message);
     }

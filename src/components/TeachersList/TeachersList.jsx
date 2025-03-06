@@ -1,20 +1,36 @@
 import { useSelector } from "react-redux";
 import TeacherItem from "../TeacherItem/TeacherItem";
 import css from "./TeachersList.module.css";
-import { selectTeachers } from "../../redux/teachers/selectors";
+import {
+  selectFavoriteTeachers,
+  selectTeachers,
+} from "../../redux/teachers/selectors";
 
-const TeachersList = () => {
+const TeachersList = ({ primary, secondary }) => {
   const teachers = useSelector(selectTeachers);
+  const favoriteTeachers = useSelector(selectFavoriteTeachers);
   return (
     <div>
-      <ul className={css.list}>
-        {teachers.length > 0 &&
-          teachers.map((teacher, idx) => (
-            <li key={idx}>
-              <TeacherItem teacher={teacher} idx={idx} />
-            </li>
-          ))}
-      </ul>
+      {primary === "primary" && (
+        <ul className={css.list}>
+          {teachers.length > 0 &&
+            teachers.map((teacher) => (
+              <li key={teacher.id}>
+                <TeacherItem teacher={teacher} />
+              </li>
+            ))}
+        </ul>
+      )}
+      {secondary === "secondary" && (
+        <ul className={css.list}>
+          {favoriteTeachers.length > 0 &&
+            favoriteTeachers.map((teacher) => (
+              <li key={teacher.id}>
+                <TeacherItem teacher={teacher} />
+              </li>
+            ))}
+        </ul>
+      )}
     </div>
   );
 };
