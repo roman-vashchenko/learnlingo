@@ -32,10 +32,13 @@ const teachersSlice = createSlice({
       })
       .addCase(addAndRemoveFavoriteTeacher.fulfilled, (state, { payload }) => {
         state.isLoader = false;
-        if (payload) {
+        const exists = state.favoriteItems.some((t) => t.id === payload.id);
+        if (exists) {
           state.favoriteItems = state.favoriteItems.filter(
             (teacher) => teacher.id !== payload.id
           );
+        } else {
+          state.favoriteItems.push(payload);
         }
       })
       .addCase(addAndRemoveFavoriteTeacher.rejected, (state) => {

@@ -16,7 +16,10 @@ const TeachersList = ({ primary, secondary }) => {
           {teachers.length > 0 &&
             teachers.map((teacher) => (
               <li key={teacher.id}>
-                <TeacherItem teacher={teacher} />
+                <TeacherItem
+                  teacher={teacher}
+                  favoriteTeachers={favoriteTeachers}
+                />
               </li>
             ))}
         </ul>
@@ -26,7 +29,10 @@ const TeachersList = ({ primary, secondary }) => {
           {favoriteTeachers.length > 0 &&
             favoriteTeachers.map((teacher) => (
               <li key={teacher.id}>
-                <TeacherItem teacher={teacher} />
+                <TeacherItem
+                  teacher={teacher}
+                  favoriteTeachers={favoriteTeachers}
+                />
               </li>
             ))}
         </ul>

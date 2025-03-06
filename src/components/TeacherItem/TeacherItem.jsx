@@ -8,14 +8,14 @@ import ModalBookTrialLesson from "../ModalBookTrialLesson/ModalBookTrialLesson";
 import { addAndRemoveFavoriteTeacher } from "../../redux/teachers/operations";
 import { useDispatch, useSelector } from "react-redux";
 import { selectLoggedIn } from "../../redux/auth/selectors";
-// import { selectFavoriteTeachers } from "../../redux/teachers/selectors";
 
-const TeacherItem = ({ teacher }) => {
+const TeacherItem = ({ teacher, favoriteTeachers }) => {
   const dispatch = useDispatch();
   const [isHidden, setIsHidden] = useState(true);
   const [modalIsOpen, setIsOpen] = useState(false);
   const isLoggedIn = useSelector(selectLoggedIn);
-  // const favoriteTeachers = useSelector(selectFavoriteTeachers);
+
+  const isFavorite = favoriteTeachers.some((t) => t.id === teacher.id);
 
   const handleCloseModal = () => {
     setIsOpen(false);
@@ -87,7 +87,11 @@ const TeacherItem = ({ teacher }) => {
               }
             }}
           >
-            <svg width={26} height={26} className={clsx(css.icon)}>
+            <svg
+              width={26}
+              height={26}
+              className={clsx(css.icon, isFavorite && css.isFavorite)}
+            >
               <use href="/img/icons.svg#icon-favorite-transparent-1"></use>
             </svg>
           </button>
