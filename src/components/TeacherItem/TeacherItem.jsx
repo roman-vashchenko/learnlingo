@@ -104,7 +104,7 @@ const TeacherItem = ({ teacher, favoriteTeachers }) => {
             <p>
               <span>Speaks:</span>{" "}
               <span className={css.languages}>
-                {teacher.languages.join(", ")}
+                {Object.keys(teacher.languages).join(", ")}
               </span>
             </p>
           </li>

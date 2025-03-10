@@ -3,9 +3,9 @@ import css from "./LanguageLevelList.module.css";
 const LanguageLevelList = ({ levels }) => {
   return (
     <ul className={css.languageLevelList}>
-      {levels.map((level, idx) => (
-        <li key={idx} className={css.languageLevelListItem}>
-          {level}
+      {Object.keys(levels).map((level) => (
+        <li key={level} className={css.languageLevelListItem}>
+          {level.replace(/_/g, " ")}
         </li>
       ))}
     </ul>

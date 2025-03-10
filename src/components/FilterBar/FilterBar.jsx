@@ -1,19 +1,30 @@
+import { useDispatch } from "react-redux";
 import css from "./FilterBar.module.css";
+import { changeFilter } from "../../redux/filter/filterSlice";
 
 const FilterBar = () => {
+  const dispatch = useDispatch();
+  const handleChangeFiler = (e) => {
+    console.log(e.target.name);
+    console.log(e.target.value);
+    dispatch(changeFilter({ name: e.target.name, value: e.target.value }));
+  };
+
   return (
     <div className={css.wrapper}>
       <div className={css.fieldFilter}>
-        {/* <svg width={20} height={20}>
+        <svg width={20} height={20}>
           <use href="/img/icons.svg#icon-drop"></use>
-        </svg> */}
+        </svg>
         <label htmlFor="languages">Languages</label>
-        <select name="languages" id="languages">
-          <option value="french">French</option>
-          <option value="english">English</option>
-          <option value="german">German</option>
-          <option value="ukrainian">Ukrainian</option>
-          <option value="polish">Polish</option>
+        <select name="languages" id="languages" onChange={handleChangeFiler}>
+          <option value="French">French</option>
+          <option value="English">English</option>
+          <option value="German">German</option>
+          <option value="Ukrainian">Ukrainian</option>
+          <option value="Polish">Polish</option>
+          <option value="Mandarin_Chinese">Mandarin Chinese</option>
+          <option value="Vietnamese">Vietnamese</option>
         </select>
         <svg width={20} height={20}>
           <use href="/img/icons.svg#icon-drop"></use>
@@ -23,24 +34,35 @@ const FilterBar = () => {
         <svg width={20} height={20}>
           <use href="/img/icons.svg#icon-drop"></use>
         </svg>
-        <label htmlFor="levelOfKnowledge">Level of knowledge</label>
-        <select name="levelOfKnowledge" id="levelOfKnowledge">
-          <option value="a1Beginner">A1 Beginner</option>
-          <option value="a2Elementary">A2 Elementary</option>
-          <option value="b1Intermediate">B1 Intermediate</option>
-          <option value="b2UpperIntermediate">B2 Upper-Intermediate</option>
+        <label htmlFor="levels">Level of knowledge</label>
+        <select name="levels" id="levels" onChange={handleChangeFiler}>
+          <option value="A1_Beginner">A1 Beginner</option>
+          <option value="A2_Elementary">A2 Elementary</option>
+          <option value="B1_Intermediate">B1 Intermediate</option>
+          <option value="B2_Upper-Intermediate">B2 Upper-Intermediate</option>
         </select>
       </div>
       <div style={{ width: "124px" }} className={css.fieldFilter}>
         <svg width={20} height={20}>
           <use href="/public/img/icons.svg#icon-drop"></use>
         </svg>
-        <label htmlFor="price">Price</label>
-        <select name="price" id="price">
-          <option value="10$">10 $</option>
-          <option value="20$">20 $</option>
-          <option value="30$">30 $</option>
-          <option value="40$">40 $</option>
+        <label
+          htmlFor="
+price_per_hour"
+        >
+          Price
+        </label>
+        <select
+          name="
+price_per_hour"
+          id="
+price_per_hour"
+          onChange={handleChangeFiler}
+        >
+          <option value="10">10 $</option>
+          <option value="20">20 $</option>
+          <option value="30">30 $</option>
+          <option value="40">40 $</option>
         </select>
       </div>
     </div>
