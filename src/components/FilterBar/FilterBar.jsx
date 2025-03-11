@@ -46,23 +46,16 @@ const FilterBar = () => {
         <svg width={20} height={20}>
           <use href="/public/img/icons.svg#icon-drop"></use>
         </svg>
-        <label
-          htmlFor="
-price_per_hour"
-        >
-          Price
-        </label>
+        <label htmlFor="price_per_hour">Price</label>
         <select
-          name="
-price_per_hour"
-          id="
-price_per_hour"
+          name="price_per_hour"
+          id="price_per_hour"
           onChange={handleChangeFiler}
         >
-          <option value="10">10 $</option>
-          <option value="20">20 $</option>
-          <option value="30">30 $</option>
-          <option value="40">40 $</option>
+          <option value="10">10-20 $</option>
+          <option value="20">20-30 $</option>
+          <option value="30">30-40 $</option>
+          <option value="40">40-50 $</option>
         </select>
       </div>
     </div>
