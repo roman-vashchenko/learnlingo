@@ -10,11 +10,15 @@ const teachersSlice = createSlice({
   name: "teachers",
   initialState: {
     items: [],
-    totalTeachers: 0,
     favoriteItems: [],
-    lastKey: null,
+    visibleTeachers: 5,
     isLoader: false,
     error: null,
+  },
+  reducers: {
+    changeVisibleTeachers: (state, { payload }) => {
+      state.visibleTeachers = payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -24,22 +28,16 @@ const teachersSlice = createSlice({
       })
       .addCase(fetchTeachers.fulfilled, (state, { payload }) => {
         state.isLoader = false;
-        if (state.lastKey) {
-          state.items = [...state.items, ...payload.data];
-        }
-        if (state.totalTeachers === 0) {
-          state.totalTeachers = payload.totalTeachers;
-        }
-        state.lastKey = payload.lastKey;
+        state.items = payload;
       })
       .addCase(fetchTeachers.rejected, (state, { payload }) => {
         state.isLoader = false;
         state.error = payload;
       })
       .addCase(fetchTeachersByFilter.pending, (state) => {
+        state.visibleTeachers = 5;
         state.isLoader = true;
         state.items = [];
-        state.totalTeachers = 0;
       })
       .addCase(fetchTeachersByFilter.fulfilled, (state, { payload }) => {
         state.isLoader = false;
@@ -83,3 +81,4 @@ const teachersSlice = createSlice({
 });
 
 export const teachersReducer = teachersSlice.reducer;
+export const { changeVisibleTeachers } = teachersSlice.actions;

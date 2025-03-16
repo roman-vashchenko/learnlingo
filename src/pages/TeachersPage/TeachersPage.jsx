@@ -13,14 +13,10 @@ const TeachersPage = () => {
     dispatch(fetchTeachers());
   }, [dispatch]);
 
-  const hendleLoadData = () => {
-    dispatch(fetchTeachers());
-  };
-
   return (
     <section className={css.section}>
       <FilterBar />
-      <TeachersList primary={"primary"} hendleLoadData={hendleLoadData} />
+      <TeachersList primary={"primary"} />
     </section>
   );
 };

@@ -1,24 +1,31 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import TeacherItem from "../TeacherItem/TeacherItem";
 import BtnLoadMore from "../../components/BtnLoadMore/BtnLoadMore";
 import css from "./TeachersList.module.css";
 import {
   selectFavoriteTeachers,
   selectTeachers,
-  selectTotalTeachers,
+  selectVisibleTeachers,
+  // selectTotalTeachers,
 } from "../../redux/teachers/selectors";
+import { changeVisibleTeachers } from "../../redux/teachers/teachersSlice";
 
-const TeachersList = ({ primary, secondary, hendleLoadData }) => {
+const TeachersList = ({ primary, secondary }) => {
+  const dispatch = useDispatch();
   const teachers = useSelector(selectTeachers);
-  const totalTeachers = useSelector(selectTotalTeachers);
   const favoriteTeachers = useSelector(selectFavoriteTeachers);
+  const visibleTeachers = useSelector(selectVisibleTeachers);
+
+  const handleLoadMore = () => {
+    dispatch(changeVisibleTeachers(visibleTeachers + 5));
+  };
 
   return (
     <div>
       {primary === "primary" && (
         <ul className={css.list}>
           {teachers.length > 0 &&
-            teachers.map((teacher) => (
+            teachers.slice(0, visibleTeachers).map((teacher) => (
               <li key={teacher.id}>
                 <TeacherItem
                   teacher={teacher}
@@ -41,8 +48,11 @@ const TeachersList = ({ primary, secondary, hendleLoadData }) => {
             ))}
         </ul>
       )}
-      {teachers.length > 0 && teachers.length < totalTeachers && (
+      {/* {teachers.length > 0 && teachers.length < totalTeachers && (
         <BtnLoadMore hendleLoadData={hendleLoadData} />
+      )} */}
+      {visibleTeachers < teachers.length && (
+        <BtnLoadMore handleLoadMore={handleLoadMore} />
       )}
     </div>
   );

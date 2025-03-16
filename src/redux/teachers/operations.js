@@ -4,60 +4,26 @@ import {
   endAt,
   equalTo,
   get,
-  limitToFirst,
   orderByChild,
-  orderByKey,
   query,
   ref,
   remove,
   set,
-  startAfter,
   startAt,
 } from "firebase/database";
 
 export const fetchTeachers = createAsyncThunk(
   "teachers/fetchTeachers",
-  async (filter, thunkAPI) => {
-    const { lastKey } = thunkAPI.getState().teachers;
+  async (_, thunkAPI) => {
     try {
       const collectionRef = ref(db, "teachers");
+      const teachersQuery = query(collectionRef);
+      const teachersSnapshot = await get(teachersQuery);
+      const data = teachersSnapshot.exists()
+        ? Object.values(teachersSnapshot.val())
+        : [];
 
-      let data;
-      let totalTeachers;
-      let teachersQuery;
-
-      if (lastKey) {
-        teachersQuery = query(
-          collectionRef,
-          orderByKey(),
-          startAfter(String(lastKey)),
-          limitToFirst(5)
-        );
-        const teachersSnapshot = await get(teachersQuery);
-        data = teachersSnapshot.exists()
-          ? Object.values(teachersSnapshot.val())
-          : [];
-        const newlastKey = data.length > 0 ? data[data.length - 1].id : null;
-        return { data, totalTeachers, lastKey: newlastKey };
-      } else {
-        const totalTeachersQuery = await get(collectionRef);
-        totalTeachers = totalTeachersQuery.exists()
-          ? Object.values(totalTeachersQuery.val())
-          : 0;
-
-        teachersQuery = query(collectionRef, limitToFirst(5));
-        const teachersSnapshot = await get(teachersQuery);
-        data = teachersSnapshot.exists()
-          ? Object.values(teachersSnapshot.val())
-          : [];
-
-        const newlastKey = data.length > 0 ? data[data.length - 1].id : null;
-        return {
-          data,
-          totalTeachers: totalTeachers.length,
-          lastKey: newlastKey,
-        };
-      }
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -67,7 +33,6 @@ export const fetchTeachers = createAsyncThunk(
 export const fetchTeachersByFilter = createAsyncThunk(
   "teachers/fetchTeachersByFilter",
   async (filter, { thunkAPI }) => {
-    let data;
     let teachersQuery;
     const collectionRef = ref(db, "teachers");
 
@@ -89,7 +54,7 @@ export const fetchTeachersByFilter = createAsyncThunk(
         );
       }
       const filteredTeachers = await get(teachersQuery);
-      data = filteredTeachers.exists()
+      const data = filteredTeachers.exists()
         ? Object.values(filteredTeachers.val())
         : [];
       return data;
