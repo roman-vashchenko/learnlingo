@@ -26,34 +26,6 @@ export const fetchTeachers = createAsyncThunk(
       let totalTeachers;
       let teachersQuery;
 
-      //Data filtering
-      // if (filter?.name && filter?.value) {
-      // if (filter.name === "price_per_hour") {
-      //   const minPrice = Number(filter.value);
-      //   const maxPrice = Number(filter.value) + 10;
-      //   console.log(maxPrice);
-      //   teachersQuery = query(
-      //     collectionRef,
-      //     orderByChild(filter.name),
-      //     startAt(minPrice),
-      //     endAt(maxPrice),
-      //     limitToFirst(5)
-      //   );
-      // } else {
-      //   teachersQuery = query(
-      //     collectionRef,
-      //     orderByChild(`${filter.name}/${filter.value}`),
-      //     equalTo(true),
-      //     limitToFirst(5)
-      //   );
-      // }
-      // const filteredTeachers = await get(teachersQuery);
-      // data = filteredTeachers.val()
-      //   ? Object.values(filteredTeachers.val())
-      //   : [];
-      // return data;
-      // } else {
-      // Normal data upload
       if (lastKey) {
         teachersQuery = query(
           collectionRef,
