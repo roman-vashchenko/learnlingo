@@ -1,14 +1,18 @@
 import { useSelector } from "react-redux";
 import TeacherItem from "../TeacherItem/TeacherItem";
+import BtnLoadMore from "../../components/BtnLoadMore/BtnLoadMore";
 import css from "./TeachersList.module.css";
 import {
   selectFavoriteTeachers,
   selectTeachers,
+  selectTotalTeachers,
 } from "../../redux/teachers/selectors";
 
-const TeachersList = ({ primary, secondary }) => {
+const TeachersList = ({ primary, secondary, hendleLoadData }) => {
   const teachers = useSelector(selectTeachers);
+  const totalTeachers = useSelector(selectTotalTeachers);
   const favoriteTeachers = useSelector(selectFavoriteTeachers);
+
   return (
     <div>
       {primary === "primary" && (
@@ -36,6 +40,9 @@ const TeachersList = ({ primary, secondary }) => {
               </li>
             ))}
         </ul>
+      )}
+      {teachers.length > 0 && teachers.length < totalTeachers && (
+        <BtnLoadMore hendleLoadData={hendleLoadData} />
       )}
     </div>
   );

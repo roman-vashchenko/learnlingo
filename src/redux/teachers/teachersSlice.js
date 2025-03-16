@@ -3,13 +3,16 @@ import {
   addAndRemoveFavoriteTeacher,
   fetchFavoriteTeachers,
   fetchTeachers,
+  fetchTeachersByFilter,
 } from "./operations";
 
 const teachersSlice = createSlice({
   name: "teachers",
   initialState: {
     items: [],
+    totalTeachers: 0,
     favoriteItems: [],
+    lastKey: null,
     isLoader: false,
     error: null,
   },
@@ -21,9 +24,28 @@ const teachersSlice = createSlice({
       })
       .addCase(fetchTeachers.fulfilled, (state, { payload }) => {
         state.isLoader = false;
-        state.items = payload;
+        if (state.lastKey) {
+          state.items = [...state.items, ...payload.data];
+        }
+        if (state.totalTeachers === 0) {
+          state.totalTeachers = payload.totalTeachers;
+        }
+        state.lastKey = payload.lastKey;
       })
       .addCase(fetchTeachers.rejected, (state, { payload }) => {
+        state.isLoader = false;
+        state.error = payload;
+      })
+      .addCase(fetchTeachersByFilter.pending, (state) => {
+        state.isLoader = true;
+        state.items = [];
+        state.totalTeachers = 0;
+      })
+      .addCase(fetchTeachersByFilter.fulfilled, (state, { payload }) => {
+        state.isLoader = false;
+        state.items = payload;
+      })
+      .addCase(fetchTeachersByFilter.rejected, (state, { payload }) => {
         state.isLoader = false;
         state.error = payload;
       })

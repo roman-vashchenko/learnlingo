@@ -6,64 +6,121 @@ import {
   get,
   limitToFirst,
   orderByChild,
+  orderByKey,
   query,
   ref,
   remove,
   set,
+  startAfter,
   startAt,
 } from "firebase/database";
 
 export const fetchTeachers = createAsyncThunk(
   "teachers/fetchTeachers",
   async (filter, thunkAPI) => {
+    const { lastKey } = thunkAPI.getState().teachers;
     try {
       const collectionRef = ref(db, "teachers");
 
       let data;
-      // let lastKey = null;
+      let totalTeachers;
       let teachersQuery;
 
       //Data filtering
-      if (filter) {
-        if (filter.name === "price_per_hour") {
-          const minPrice = Number(filter.value);
-          const maxPrice = Number(filter.value) + 10;
-          console.log(maxPrice);
-          teachersQuery = query(
-            collectionRef,
-            orderByChild(filter.name),
-            startAt(minPrice),
-            endAt(maxPrice),
-            limitToFirst(5)
-          );
-        } else {
-          teachersQuery = query(
-            collectionRef,
-            orderByChild(`${filter.name}/${filter.value}`),
-            equalTo(true),
-            limitToFirst(5)
-          );
-        }
-        const filteredTeachers = await get(teachersQuery);
-        data = filteredTeachers.val()
-          ? Object.values(filteredTeachers.val())
+      // if (filter?.name && filter?.value) {
+      // if (filter.name === "price_per_hour") {
+      //   const minPrice = Number(filter.value);
+      //   const maxPrice = Number(filter.value) + 10;
+      //   console.log(maxPrice);
+      //   teachersQuery = query(
+      //     collectionRef,
+      //     orderByChild(filter.name),
+      //     startAt(minPrice),
+      //     endAt(maxPrice),
+      //     limitToFirst(5)
+      //   );
+      // } else {
+      //   teachersQuery = query(
+      //     collectionRef,
+      //     orderByChild(`${filter.name}/${filter.value}`),
+      //     equalTo(true),
+      //     limitToFirst(5)
+      //   );
+      // }
+      // const filteredTeachers = await get(teachersQuery);
+      // data = filteredTeachers.val()
+      //   ? Object.values(filteredTeachers.val())
+      //   : [];
+      // return data;
+      // } else {
+      // Normal data upload
+      if (lastKey) {
+        teachersQuery = query(
+          collectionRef,
+          orderByKey(),
+          startAfter(String(lastKey)),
+          limitToFirst(5)
+        );
+        const teachersSnapshot = await get(teachersQuery);
+        data = teachersSnapshot.exists()
+          ? Object.values(teachersSnapshot.val())
           : [];
-        return data;
+        const newlastKey = data.length > 0 ? data[data.length - 1].id : null;
+        return { data, totalTeachers, lastKey: newlastKey };
       } else {
-        // Normal data upload
+        const totalTeachersQuery = await get(collectionRef);
+        totalTeachers = totalTeachersQuery.exists()
+          ? Object.values(totalTeachersQuery.val())
+          : 0;
+
         teachersQuery = query(collectionRef, limitToFirst(5));
         const teachersSnapshot = await get(teachersQuery);
+        data = teachersSnapshot.exists()
+          ? Object.values(teachersSnapshot.val())
+          : [];
 
-        // if (teachersSnapshot.exists()) {
-        //
-        //   const num = teachersSnapshot.numChildren();
-        //   console.log("Number of children: ", num);
-        // } else {
-        //   console.log("No data available");
-        // }
-        data = teachersSnapshot.val();
-        return data;
+        const newlastKey = data.length > 0 ? data[data.length - 1].id : null;
+        return {
+          data,
+          totalTeachers: totalTeachers.length,
+          lastKey: newlastKey,
+        };
       }
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchTeachersByFilter = createAsyncThunk(
+  "teachers/fetchTeachersByFilter",
+  async (filter, { thunkAPI }) => {
+    let data;
+    let teachersQuery;
+    const collectionRef = ref(db, "teachers");
+
+    try {
+      if (filter.name === "price_per_hour") {
+        const minPrice = Number(filter.value);
+        const maxPrice = Number(filter.value) + 10;
+        teachersQuery = query(
+          collectionRef,
+          orderByChild(filter.name),
+          startAt(minPrice),
+          endAt(maxPrice)
+        );
+      } else {
+        teachersQuery = query(
+          collectionRef,
+          orderByChild(`${filter.name}/${filter.value}`),
+          equalTo(true)
+        );
+      }
+      const filteredTeachers = await get(teachersQuery);
+      data = filteredTeachers.exists()
+        ? Object.values(filteredTeachers.val())
+        : [];
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

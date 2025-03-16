@@ -1,13 +1,13 @@
 import { useDispatch } from "react-redux";
 import css from "./FilterBar.module.css";
-import { changeFilter } from "../../redux/filter/filterSlice";
+import { fetchTeachersByFilter } from "../../redux/teachers/operations";
 
 const FilterBar = () => {
   const dispatch = useDispatch();
   const handleChangeFiler = (e) => {
-    console.log(e.target.name);
-    console.log(e.target.value);
-    dispatch(changeFilter({ name: e.target.name, value: e.target.value }));
+    dispatch(
+      fetchTeachersByFilter({ name: e.target.name, value: e.target.value })
+    );
   };
 
   return (
