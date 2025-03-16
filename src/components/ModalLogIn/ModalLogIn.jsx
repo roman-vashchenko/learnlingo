@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ReactModal from "react-modal";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/auth/operations";
 import { auth } from "../../firebase/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { Box, CircularProgress } from "@mui/material";
 
 ReactModal.setAppElement("#root");
 
@@ -40,6 +41,7 @@ const schema = yup
   .required();
 
 const ModalLogIn = ({ isOpen, onClose }) => {
+  const [isLoader, setLoader] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     addBlockOnBody(isOpen);
@@ -57,6 +59,7 @@ const ModalLogIn = ({ isOpen, onClose }) => {
     resolver: yupResolver(schema),
   });
   const onSubmit = async (data) => {
+    setLoader(true);
     try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
@@ -66,8 +69,10 @@ const ModalLogIn = ({ isOpen, onClose }) => {
       const user = userCredential.user;
       dispatch(logIn({ user }));
       onClose();
+      setLoader(false);
     } catch (error) {
       console.log(error);
+      setLoader(false);
     }
   };
 
@@ -105,7 +110,15 @@ const ModalLogIn = ({ isOpen, onClose }) => {
             <p style={{ color: "red" }}>{errors.password?.message}</p>
           </div>
           <button type="submit" className={css.btn}>
-            Log In
+            {isLoader ? (
+              <div>
+                <Box>
+                  <CircularProgress size="19px" />
+                </Box>
+              </div>
+            ) : (
+              "Log In"
+            )}
           </button>
         </form>
       </ReactModal>

@@ -25,6 +25,7 @@ export const fetchTeachers = createAsyncThunk(
 
       return data;
     } catch (error) {
+      console.log(error.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -66,7 +67,7 @@ export const fetchTeachersByFilter = createAsyncThunk(
 
 export const addAndRemoveFavoriteTeacher = createAsyncThunk(
   "teachers/addFavorite",
-  async ({ teacher }, { rejectWithValue }) => {
+  async (teacher, { rejectWithValue }) => {
     try {
       const userId = auth.currentUser.uid;
       const teachersRef = ref(db, `users/${userId}/favoriteTeachers`);
@@ -81,11 +82,12 @@ export const addAndRemoveFavoriteTeacher = createAsyncThunk(
           `users/${userId}/favoriteTeachers/${teacher.id}`
         );
         await remove(teacherRef);
-        return { ...teacher };
+        return teacher;
       } else {
-        await set(ref(db, `users/${userId}/favoriteTeachers/${teacher.id}`), {
-          ...teacher,
-        });
+        await set(
+          ref(db, `users/${userId}/favoriteTeachers/${teacher.id}`),
+          teacher
+        );
         return teacher;
       }
     } catch (error) {

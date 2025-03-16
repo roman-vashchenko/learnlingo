@@ -83,7 +83,7 @@ const TeacherItem = ({ teacher, favoriteTeachers }) => {
             className={css.btnFvorite}
             onClick={() => {
               if (isLoggedIn) {
-                dispatch(addAndRemoveFavoriteTeacher({ teacher }));
+                dispatch(addAndRemoveFavoriteTeacher(teacher));
               }
             }}
           >

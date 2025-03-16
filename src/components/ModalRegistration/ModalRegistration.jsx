@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ReactModal from "react-modal";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { registerUser } from "../../redux/auth/operations";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
+import { Box, CircularProgress } from "@mui/material";
 
 ReactModal.defaultStyles.overlay.backgroundColor = "rgba(0, 0, 0, 0.7)";
 ReactModal.setAppElement("#root");
@@ -41,6 +42,7 @@ const schema = yup
   .required();
 
 const ModalRegistration = ({ isOpen, onClose }) => {
+  const [isLoader, setLoader] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     addBlockOnBody(isOpen);
@@ -58,7 +60,7 @@ const ModalRegistration = ({ isOpen, onClose }) => {
     resolver: yupResolver(schema),
   });
   const onSubmit = async (data) => {
-    console.log(data);
+    setLoader(true);
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -66,12 +68,13 @@ const ModalRegistration = ({ isOpen, onClose }) => {
         data.password
       );
       const user = userCredential.user;
-      console.log(user);
-      dispatch(registerUser({ name: data.name, user }));
 
+      dispatch(registerUser({ name: data.name, user }));
       onClose();
+      setLoader(false);
     } catch (error) {
       console.error(error);
+      setLoader(false);
     }
   };
 
@@ -117,7 +120,15 @@ const ModalRegistration = ({ isOpen, onClose }) => {
             <p style={{ color: "red" }}>{errors.password?.message}</p>
           </div>
           <button type="submit" className={css.btn}>
-            Sign Up
+            {isLoader ? (
+              <div>
+                <Box>
+                  <CircularProgress size="19px" />
+                </Box>
+              </div>
+            ) : (
+              "Sign Up"
+            )}
           </button>
         </form>
       </ReactModal>

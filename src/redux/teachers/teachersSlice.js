@@ -23,7 +23,6 @@ const teachersSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchTeachers.pending, (state) => {
-        state.error = null;
         state.isLoader = true;
       })
       .addCase(fetchTeachers.fulfilled, (state, { payload }) => {
@@ -46,9 +45,6 @@ const teachersSlice = createSlice({
       .addCase(fetchTeachersByFilter.rejected, (state, { payload }) => {
         state.isLoader = false;
         state.error = payload;
-      })
-      .addCase(addAndRemoveFavoriteTeacher.pending, (state) => {
-        state.isLoader = true;
       })
       .addCase(addAndRemoveFavoriteTeacher.fulfilled, (state, { payload }) => {
         state.isLoader = false;
