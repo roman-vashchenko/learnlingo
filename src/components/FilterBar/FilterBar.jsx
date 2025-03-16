@@ -1,10 +1,12 @@
 import { useDispatch } from "react-redux";
 import css from "./FilterBar.module.css";
 import { fetchTeachersByFilter } from "../../redux/teachers/operations";
+import { changeFilter } from "../../redux/filter/filterSlice";
 
 const FilterBar = () => {
   const dispatch = useDispatch();
   const handleChangeFiler = (e) => {
+    dispatch(changeFilter({ name: e.target.name, value: e.target.value }));
     dispatch(
       fetchTeachersByFilter({ name: e.target.name, value: e.target.value })
     );
@@ -12,7 +14,7 @@ const FilterBar = () => {
 
   return (
     <div className={css.wrapper}>
-      <div className={css.fieldFilter}>
+      <div className={css.fieldFilter} style={{ width: "205px" }}>
         <svg width={20} height={20}>
           <use href="/img/icons.svg#icon-drop"></use>
         </svg>

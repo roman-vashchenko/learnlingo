@@ -67,7 +67,7 @@ const ModalLogIn = ({ isOpen, onClose }) => {
       dispatch(logIn({ user }));
       onClose();
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 

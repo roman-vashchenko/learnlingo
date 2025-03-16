@@ -1,24 +1,17 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import TeacherItem from "../TeacherItem/TeacherItem";
-import BtnLoadMore from "../../components/BtnLoadMore/BtnLoadMore";
+
 import css from "./TeachersList.module.css";
 import {
   selectFavoriteTeachers,
   selectTeachers,
   selectVisibleTeachers,
-  // selectTotalTeachers,
 } from "../../redux/teachers/selectors";
-import { changeVisibleTeachers } from "../../redux/teachers/teachersSlice";
 
 const TeachersList = ({ primary, secondary }) => {
-  const dispatch = useDispatch();
   const teachers = useSelector(selectTeachers);
   const favoriteTeachers = useSelector(selectFavoriteTeachers);
   const visibleTeachers = useSelector(selectVisibleTeachers);
-
-  const handleLoadMore = () => {
-    dispatch(changeVisibleTeachers(visibleTeachers + 5));
-  };
 
   return (
     <div>
@@ -47,12 +40,6 @@ const TeachersList = ({ primary, secondary }) => {
               </li>
             ))}
         </ul>
-      )}
-      {/* {teachers.length > 0 && teachers.length < totalTeachers && (
-        <BtnLoadMore hendleLoadData={hendleLoadData} />
-      )} */}
-      {visibleTeachers < teachers.length && (
-        <BtnLoadMore handleLoadMore={handleLoadMore} />
       )}
     </div>
   );
