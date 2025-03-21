@@ -7,7 +7,6 @@ const PrivateRoute = ({ component: Component, redirectTo = "/teachers" }) => {
   const { isRefreshing } = useSelector(selectAuth);
 
   const shouldRedirect = !isLoggedIn && !isRefreshing;
-  console.log(shouldRedirect);
 
   return shouldRedirect ? <Navigate to={redirectTo} /> : Component;
 };

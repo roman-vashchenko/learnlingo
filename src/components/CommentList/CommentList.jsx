@@ -1,4 +1,5 @@
 import css from "./CommentList.module.css";
+import { FaUserAlt } from "react-icons/fa";
 
 const CommentList = ({ reviews }) => {
   return (
@@ -6,7 +7,9 @@ const CommentList = ({ reviews }) => {
       {reviews.map((reviews, idx) => (
         <li key={idx} className={css.commentItem}>
           <div className={css.commentItemWrap}>
-            <div className={css.commentItemAvatar}></div>
+            <div className={css.commentItemAvatar}>
+              <FaUserAlt size={30} />
+            </div>
             <div>
               <p className={css.commentItemName}>{reviews.reviewer_name}</p>
               <div

@@ -19,6 +19,9 @@ const teachersSlice = createSlice({
     changeVisibleTeachers: (state, { payload }) => {
       state.visibleTeachers = payload;
     },
+    resetFavorites: (state) => {
+      state.favoriteItems = [];
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -77,4 +80,4 @@ const teachersSlice = createSlice({
 });
 
 export const teachersReducer = teachersSlice.reducer;
-export const { changeVisibleTeachers } = teachersSlice.actions;
+export const { changeVisibleTeachers, resetFavorites } = teachersSlice.actions;

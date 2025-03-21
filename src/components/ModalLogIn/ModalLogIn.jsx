@@ -11,6 +11,7 @@ import { auth } from "../../firebase/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Box, CircularProgress } from "@mui/material";
 import toast from "react-hot-toast";
+import { fetchFavoriteTeachers } from "../../redux/teachers/operations";
 
 ReactModal.setAppElement("#root");
 
@@ -71,6 +72,7 @@ const ModalLogIn = ({ isOpen, onClose }) => {
       dispatch(logIn({ user }));
       onClose();
       setLoader(false);
+      dispatch(fetchFavoriteTeachers());
     } catch (error) {
       if (error.message === "Firebase: Error (auth/invalid-credential).") {
         toast.error("Incorrect login or password.", {
