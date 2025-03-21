@@ -10,6 +10,7 @@ import { registerUser } from "../../redux/auth/operations";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import { Box, CircularProgress } from "@mui/material";
+import toast from "react-hot-toast";
 
 ReactModal.defaultStyles.overlay.backgroundColor = "rgba(0, 0, 0, 0.7)";
 ReactModal.setAppElement("#root");
@@ -73,7 +74,12 @@ const ModalRegistration = ({ isOpen, onClose }) => {
       onClose();
       setLoader(false);
     } catch (error) {
-      console.error(error);
+      if (error.message === "Firebase: Error (auth/email-already-in-use).") {
+        toast.error("User with this email already exists.", {
+          duration: 3000,
+        });
+      }
+
       setLoader(false);
     }
   };

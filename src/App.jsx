@@ -7,6 +7,7 @@ import TeachersPage from "./pages/TeachersPage/TeachersPage";
 import { useDispatch, useSelector } from "react-redux";
 import { refreshUser } from "./redux/auth/operations";
 import { selectAuth } from "./redux/auth/selectors";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,7 +25,15 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
             <Route path="/teachers" element={<TeachersPage />} />
-            <Route path="/favorites" element={<FavoritesPage />} />
+            <Route
+              path="/favorites"
+              element={
+                <PrivateRoute
+                  redirectTo="/teachers"
+                  component={<FavoritesPage />}
+                />
+              }
+            />
           </Route>
         </Routes>
       </Suspense>

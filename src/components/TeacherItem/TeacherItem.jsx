@@ -8,6 +8,7 @@ import ModalBookTrialLesson from "../ModalBookTrialLesson/ModalBookTrialLesson";
 import { addAndRemoveFavoriteTeacher } from "../../redux/teachers/operations";
 import { useDispatch, useSelector } from "react-redux";
 import { selectLoggedIn } from "../../redux/auth/selectors";
+import toast from "react-hot-toast";
 
 const TeacherItem = ({ teacher, favoriteTeachers }) => {
   const dispatch = useDispatch();
@@ -84,6 +85,13 @@ const TeacherItem = ({ teacher, favoriteTeachers }) => {
             onClick={() => {
               if (isLoggedIn) {
                 dispatch(addAndRemoveFavoriteTeacher(teacher));
+              } else {
+                toast(
+                  "Register or log in to add a teacher to your favorites list",
+                  {
+                    duration: 3000,
+                  }
+                );
               }
             }}
           >
