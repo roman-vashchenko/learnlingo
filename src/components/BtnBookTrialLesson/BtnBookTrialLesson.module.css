@@ -1,4 +1,5 @@
 .btn {
+  display: block;
   margin-top: 32px;
   padding: 16px 48px;
   border-color: transparent;
@@ -14,4 +15,12 @@
 .btn:hover,
 .btn:focus {
   background-color: #91d1d1;
+}
+
+@media (max-width: 768px) {
+  .btn {
+    min-width: 100px;
+    margin: 0 auto;
+    font-size: 14px;
+  }
 }

@@ -17,3 +17,9 @@
 .logo:focus {
   color: #91d1d1;
 }
+
+@media (max-width: 1440px) {
+  .logo {
+    font-size: 14px;
+  }
+}

@@ -9,7 +9,7 @@ const UserBar = () => {
   const user = useSelector(selectUser);
 
   return (
-    <div>
+    <div className={css.content}>
       <p className={css.text}>
         Hello! <span>{user.name}</span>
       </p>

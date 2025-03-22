@@ -18,3 +18,8 @@
 .btn:focus {
   background-color: #91d1d1;
 }
+@media (max-width: 1440px) {
+  .content {
+    font-size: 14px;
+  }
+}

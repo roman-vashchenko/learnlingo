@@ -4,3 +4,9 @@
   padding: 64px 64px 64px;
   background-color: #f8f8f8;
 }
+
+@media (max-width: 1440px) {
+  .section {
+    padding: 20px;
+  }
+}

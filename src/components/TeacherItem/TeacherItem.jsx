@@ -28,7 +28,7 @@ const TeacherItem = ({ teacher, favoriteTeachers }) => {
 
   return (
     <div className={css.card}>
-      <div className={css.awatarWrapper}>
+      <div className={css.avatarWrapper}>
         <img
           src={teacher.avatar_url}
           alt={teacher.name}

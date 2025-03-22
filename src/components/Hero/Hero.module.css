@@ -53,7 +53,13 @@
   background-color: var(--bg-color-hero);
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 768px) {
+  .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1440px) {
   .section {
     flex-direction: column;
   }
@@ -73,14 +79,22 @@
     width: 150px;
     text-align: center;
     margin: 0 auto;
+    font-size: 14px;
   }
   .bg {
     width: 100%;
   }
 }
 
-@media (min-width: 1401px) {
+@media (min-width: 1441px) {
   .bg {
     min-width: 568px;
+  }
+}
+
+@media (max-width: 768px) {
+  .btn {
+    width: 80px;
+    padding: 10px 70px;
   }
 }

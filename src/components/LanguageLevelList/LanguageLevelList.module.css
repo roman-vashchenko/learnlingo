@@ -1,6 +1,8 @@
 .languageLevelList {
   display: flex;
   gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 35px;
 }
 
 .languageLevelListItem {
@@ -11,4 +13,10 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 1.14;
+}
+
+@media (max-width: 768px) {
+  .languageLevelList {
+    font-size: 14px;
+  }
 }

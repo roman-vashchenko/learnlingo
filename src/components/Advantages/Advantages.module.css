@@ -30,4 +30,37 @@
   font-size: 14px;
   line-height: 1.28;
   letter-spacing: -0.28px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 15px;
+  }
+  .list {
+    flex-direction: column;
+    gap: 25px;
+  }
+  .item {
+    flex-direction: column;
+  }
+  .item span {
+    font-size: 30px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1440px) {
+  .section {
+    padding: 15px;
+  }
+  .list {
+    align-items: baseline;
+  }
+  .item span {
+    font-size: 20px;
+  }
+  .item {
+    flex-direction: column;
+    gap: 5px;
+  }
 }

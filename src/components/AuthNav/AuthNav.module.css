@@ -30,3 +30,9 @@
 .logInBtn:focus {
   color: #91d1d1;
 }
+
+@media (max-width: 1440px) {
+  .wrapper {
+    font-size: 14px;
+  }
+}
