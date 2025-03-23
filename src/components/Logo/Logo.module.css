@@ -18,7 +18,7 @@
   color: #91d1d1;
 }
 
-@media (max-width: 1440px) {
+@media (max-width: 768px) {
   .logo {
     font-size: 14px;
   }

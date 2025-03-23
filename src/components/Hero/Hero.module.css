@@ -46,44 +46,12 @@
 }
 
 .bg {
-  min-height: 500px;
+  flex-grow: 1;
   border-radius: 30px;
+
   background: url("/img/mac.png") no-repeat bottom,
     url("/img/girl.png") no-repeat 50% 44%;
   background-color: var(--bg-color-hero);
-}
-
-@media (max-width: 768px) {
-  .btn {
-    width: 100%;
-  }
-}
-
-@media (max-width: 1440px) {
-  .section {
-    flex-direction: column;
-  }
-  .content {
-    padding: 20px 20px;
-  }
-  .title {
-    text-align: center;
-  }
-
-  .text {
-    width: 100%;
-  }
-
-  .btn {
-    display: block;
-    width: 150px;
-    text-align: center;
-    margin: 0 auto;
-    font-size: 14px;
-  }
-  .bg {
-    width: 100%;
-  }
 }
 
 @media (min-width: 1441px) {
@@ -92,7 +60,38 @@
   }
 }
 
+@media (max-width: 1440px) {
+  .content {
+    padding: 20px 35px;
+  }
+
+  .text {
+    width: 100%;
+  }
+
+  .bg {
+    width: 100%;
+    min-height: 500px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .section {
+    flex-direction: column;
+  }
+  .btn {
+    display: block;
+    width: 150px;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 14px;
+  }
+}
+
 @media (max-width: 768px) {
+  .title {
+    text-align: center;
+  }
   .btn {
     width: 80px;
     padding: 10px 70px;

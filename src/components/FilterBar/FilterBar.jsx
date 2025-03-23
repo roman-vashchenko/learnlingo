@@ -46,7 +46,7 @@ const FilterBar = () => {
       </div>
       <div style={{ width: "124px" }} className={css.fieldFilter}>
         <svg width={20} height={20}>
-          <use href="/public/img/icons.svg#icon-drop"></use>
+          <use href="/img/icons.svg#icon-drop"></use>
         </svg>
         <label htmlFor="price_per_hour">Price</label>
         <select

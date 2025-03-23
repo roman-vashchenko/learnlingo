@@ -12,27 +12,7 @@ import { auth } from "../../firebase/firebase";
 import { Box, CircularProgress } from "@mui/material";
 import toast from "react-hot-toast";
 
-ReactModal.defaultStyles.overlay.backgroundColor = "rgba(0, 0, 0, 0.7)";
 ReactModal.setAppElement("#root");
-
-const customStyles = {
-  overlay: {
-    position: "fixed",
-    inset: 0,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    overflowY: "auto",
-  },
-  content: {
-    position: "relative",
-    inset: "0px",
-    width: "566px",
-    padding: "64px",
-    borderRadius: "30px",
-    backgroundColor: "#FFF",
-  },
-};
 
 const schema = yup
   .object({
@@ -89,7 +69,8 @@ const ModalRegistration = ({ isOpen, onClose }) => {
       <ReactModal
         isOpen={isOpen}
         onRequestClose={onClose}
-        style={customStyles}
+        className={css.modal}
+        overlayClassName={css.overlay}
         bodyOpenClassName={null}
       >
         <svg width={32} height={32} className={css.icon} onClick={onClose}>

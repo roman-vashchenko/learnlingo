@@ -121,8 +121,17 @@ span.languages {
 }
 
 @media (max-width: 768px) {
+  .statisticsList {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .statisticsListItem:not(:last-child)::after {
+    display: none;
+  }
+}
+
+@media (max-width: 1200px) {
   .card {
-    padding: 0;
     flex-direction: column;
   }
   .avatarWrapper {
@@ -146,14 +155,6 @@ span.languages {
   .descriptionText {
     font-size: 14px;
   }
-  .statisticsList {
-    flex-direction: column;
-    gap: 5px;
-  }
-  .statisticsListItem:not(:last-child)::after {
-    display: none;
-  }
-
   .btnFvorite {
     position: absolute;
     top: 10px;

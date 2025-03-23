@@ -13,27 +13,6 @@ import { addBlockOnBody } from "../../helpers/addBlockOnBody";
 
 ReactModal.setAppElement("#root");
 
-const customStyles = {
-  overlay: {
-    position: "fixed",
-    inset: 0,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    overflowY: "auto",
-    padding: "150px 0",
-  },
-  content: {
-    position: "relative",
-    inset: "0px",
-    width: "600px",
-    padding: "64px",
-    borderRadius: "30px",
-    backgroundColor: "#FFF",
-    margin: "auto",
-  },
-};
-
 const schema = yup
   .object({
     name: yup.string().required(),
@@ -68,7 +47,8 @@ const ModalBookTrialLesson = ({ isOpen, onClose, name, surname, avatar }) => {
       <ReactModal
         isOpen={isOpen}
         onRequestClose={onClose}
-        style={customStyles}
+        className={css.modal}
+        overlayClassName={css.overlay}
         bodyOpenClassName={null}
       >
         <svg width={32} height={32} className={css.icon} onClick={onClose}>

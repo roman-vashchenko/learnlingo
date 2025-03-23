@@ -1,3 +1,23 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 70px 0;
+}
+
+.modal {
+  position: relative;
+  width: 566px;
+  padding: 64px;
+  border-radius: 30px;
+  background-color: #fff;
+  margin: auto;
+}
+
 .icon {
   position: absolute;
   top: 20px;
@@ -65,4 +85,23 @@
 .btn:hover,
 .btn:focus {
   background-color: #91d1d1;
+}
+
+@media (max-width: 768px) {
+  .modal {
+    width: 70%;
+    padding: 45px 20px;
+  }
+  .title {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  .text {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  .btn {
+    width: 100%;
+    padding: 10px 10px;
+  }
 }

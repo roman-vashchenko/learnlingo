@@ -13,9 +13,3 @@
   color: var(--main-color);
   font-weight: 700;
 }
-
-@media (max-width: 1400px) {
-  .link {
-    font-size: 14px;
-  }
-}
