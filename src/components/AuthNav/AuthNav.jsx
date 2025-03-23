@@ -13,6 +13,7 @@ const AuthNav = ({ openModal }) => {
         </svg>
         <span>Log in</span>
       </button>
+
       <button
         type="button"
         className={css.registrationBtn}

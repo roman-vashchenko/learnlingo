@@ -31,8 +31,13 @@
   color: #91d1d1;
 }
 
-@media (max-width: 1440px) {
-  .wrapper {
+@media (max-width: 768px) {
+  .logInBtn,
+  .registrationBtn {
     font-size: 14px;
+    padding: 10px 20px;
+  }
+  .logInBtn {
+    padding: 0;
   }
 }

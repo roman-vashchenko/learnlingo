@@ -3,3 +3,9 @@
   background-color: #f8f8f8;
   min-height: 100vh;
 }
+
+@media (max-width: 1440px) {
+  .section {
+    padding: 20px;
+  }
+}

@@ -6,9 +6,9 @@ import UserBar from "../UserBar/UserBar";
 import css from "./AppBar.module.css";
 import { selectLoggedIn, selectUser } from "../../redux/auth/selectors";
 import { useMediaQuery } from "react-responsive";
-import MobileMenu from "../MobileMenu/MobileMenu";
+import BtnMenu from "../BtnMenu/BtnMenu";
 
-const AppBar = ({ openModal }) => {
+const AppBar = ({ openModal, toggleMenu }) => {
   const isLoggedIn = useSelector(selectLoggedIn);
   const user = useSelector(selectUser);
   const isTabletOrLarger = useMediaQuery({ minWidth: 768 });
@@ -24,7 +24,7 @@ const AppBar = ({ openModal }) => {
           <AuthNav openModal={openModal} />
         )
       ) : (
-        <MobileMenu />
+        <BtnMenu toggleMenu={toggleMenu} />
       )}
     </header>
   );

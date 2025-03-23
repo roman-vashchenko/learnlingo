@@ -1,0 +1,19 @@
+.btn {
+  display: block;
+
+  min-width: 50;
+
+  border-color: transparent;
+  border-radius: 12px;
+  background-color: var(--main-color);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--text-color-primary);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: #91d1d1;
+}
