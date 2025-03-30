@@ -8,6 +8,7 @@ import {
   fetchTeachers,
 } from "../../redux/teachers/operations";
 import {
+  selectFavoriteTeachers,
   selectLoading,
   selectTeachers,
   selectVisibleTeachers,
@@ -21,13 +22,17 @@ const TeachersPage = () => {
   const dispatch = useDispatch();
   const teachers = useSelector(selectTeachers);
   const visibleTeachers = useSelector(selectVisibleTeachers);
+  const favoriteTeachers = useSelector(selectFavoriteTeachers);
   const isLoader = useSelector(selectLoading);
   const user = useSelector(selectUser);
 
   useEffect(() => {
     dispatch(fetchTeachers());
-    user && dispatch(fetchFavoriteTeachers());
-    console.log(123);
+    if (user) {
+      if (favoriteTeachers.length === 0) {
+        dispatch(fetchFavoriteTeachers());
+      }
+    }
   }, [dispatch]);
 
   const handleLoadMore = () => {
