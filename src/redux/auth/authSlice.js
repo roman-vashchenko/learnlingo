@@ -13,9 +13,7 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(registerUser.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.isLoggedIn = true;
-
         state.user = action.payload;
       })
       .addCase(registerUser.rejected, (state, action) => {
@@ -26,9 +24,6 @@ const authSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(logIn.rejected, (state, action) => {
-        state.error = action.payload;
-      })
-      .addCase(logOut.pending, (state, action) => {
         state.error = action.payload;
       })
       .addCase(logOut.fulfilled, (state) => {

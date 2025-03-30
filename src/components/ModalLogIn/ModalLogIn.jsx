@@ -25,6 +25,7 @@ const schema = yup
 const ModalLogIn = ({ isOpen, onClose }) => {
   const [isLoader, setLoader] = useState(false);
   const dispatch = useDispatch();
+
   useEffect(() => {
     addBlockOnBody(isOpen);
     return () => {
@@ -51,8 +52,8 @@ const ModalLogIn = ({ isOpen, onClose }) => {
       const user = userCredential.user;
       dispatch(logIn({ user }));
       onClose();
-      setLoader(false);
       dispatch(fetchFavoriteTeachers());
+      setLoader(false);
     } catch (error) {
       if (error.message === "Firebase: Error (auth/invalid-credential).") {
         toast.error("Incorrect login or password.", {
@@ -97,7 +98,7 @@ const ModalLogIn = ({ isOpen, onClose }) => {
             />
             <p style={{ color: "red" }}>{errors.password?.message}</p>
           </div>
-          <button type="submit" className={css.btn}>
+          <button type="submit" className={css.btn} disabled={isLoader}>
             {isLoader ? (
               <div>
                 <Box>

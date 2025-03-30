@@ -3,7 +3,10 @@ import FilterBar from "../../components/FilterBar/FilterBar";
 import TeachersList from "../../components/TeachersList/TeachersList";
 import css from "./TeachersPage.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchTeachers } from "../../redux/teachers/operations";
+import {
+  fetchFavoriteTeachers,
+  fetchTeachers,
+} from "../../redux/teachers/operations";
 import {
   selectLoading,
   selectTeachers,
@@ -12,15 +15,19 @@ import {
 import { changeVisibleTeachers } from "../../redux/teachers/teachersSlice";
 import BtnLoadMore from "../../components/BtnLoadMore/BtnLoadMore";
 import { Box, CircularProgress } from "@mui/material";
+import { selectUser } from "../../redux/auth/selectors";
 
 const TeachersPage = () => {
   const dispatch = useDispatch();
   const teachers = useSelector(selectTeachers);
   const visibleTeachers = useSelector(selectVisibleTeachers);
   const isLoader = useSelector(selectLoading);
+  const user = useSelector(selectUser);
 
   useEffect(() => {
     dispatch(fetchTeachers());
+    user && dispatch(fetchFavoriteTeachers());
+    console.log(123);
   }, [dispatch]);
 
   const handleLoadMore = () => {

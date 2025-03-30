@@ -101,7 +101,6 @@ export const fetchFavoriteTeachers = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const userId = auth.currentUser.uid;
-
       const teachersRef = ref(db, `users/${userId}/favoriteTeachers`);
       const snapshot = await get(teachersRef);
       const data = snapshot.val();

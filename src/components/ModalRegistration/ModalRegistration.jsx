@@ -106,7 +106,7 @@ const ModalRegistration = ({ isOpen, onClose }) => {
             />
             <p style={{ color: "red" }}>{errors.password?.message}</p>
           </div>
-          <button type="submit" className={css.btn}>
+          <button type="submit" className={css.btn} disabled={isLoader}>
             {isLoader ? (
               <div>
                 <Box>
