@@ -47,6 +47,7 @@
 }
 
 .form {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -62,6 +63,10 @@
   padding: 16px 18px;
   border-radius: 12px;
   border: 1px solid rgba(18, 20, 23, 0.1);
+}
+
+.fieldPassword {
+  position: relative;
 }
 
 .form input::placeholder {
@@ -86,6 +91,15 @@
   background-color: #91d1d1;
 }
 
+.btnIcon {
+  position: absolute;
+  bottom: 50%;
+  right: 15px;
+  cursor: pointer;
+  border-color: transparent;
+  background-color: transparent;
+}
+
 @media (max-width: 768px) {
   .modal {
     width: 70%;
@@ -102,5 +116,10 @@
   .btn {
     width: 100%;
     padding: 10px 10px;
+  }
+  .btnIcon {
+    position: absolute;
+    bottom: 48%;
+    right: 15px;
   }
 }

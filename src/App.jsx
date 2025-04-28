@@ -1,13 +1,14 @@
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
-import HomePage from "./pages/HomePage/HomePage";
-import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
-import TeachersPage from "./pages/TeachersPage/TeachersPage";
 import { useDispatch, useSelector } from "react-redux";
 import { refreshUser } from "./redux/auth/operations";
 import { selectAuth } from "./redux/auth/selectors";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+
+const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const TeachersPage = lazy(() => import("./pages/TeachersPage/TeachersPage"));
+const FavoritesPage = lazy(() => import("./pages/FavoritesPage/FavoritesPage"));
 
 function App() {
   const dispatch = useDispatch();

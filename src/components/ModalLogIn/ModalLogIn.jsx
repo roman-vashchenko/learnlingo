@@ -10,6 +10,7 @@ import { logIn } from "../../redux/auth/operations";
 import { auth } from "../../firebase/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Box, CircularProgress } from "@mui/material";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { fetchFavoriteTeachers } from "../../redux/teachers/operations";
 
@@ -23,7 +24,15 @@ const schema = yup
   .required();
 
 const ModalLogIn = ({ isOpen, onClose }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
   const [isLoader, setLoader] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -34,13 +43,6 @@ const ModalLogIn = ({ isOpen, onClose }) => {
     };
   }, [isOpen]);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
   const onSubmit = async (data) => {
     setLoader(true);
     try {
@@ -62,6 +64,10 @@ const ModalLogIn = ({ isOpen, onClose }) => {
       }
       setLoader(false);
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -90,12 +96,24 @@ const ModalLogIn = ({ isOpen, onClose }) => {
               {...register("email")}
             />
             <p style={{ color: "red" }}>{errors.email?.message}</p>
+
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="password"
               placeholder="Password"
               {...register("password")}
             />
+            <button
+              type="button"
+              className={css.btnIcon}
+              onClick={togglePasswordVisibility}
+            >
+              {showPassword ? (
+                <FaEyeSlash className={css.iconEye} size={20} />
+              ) : (
+                <FaEye className={css.iconEye} size={20} />
+              )}
+            </button>
             <p style={{ color: "red" }}>{errors.password?.message}</p>
           </div>
           <button type="submit" className={css.btn} disabled={isLoader}>

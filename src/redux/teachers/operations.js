@@ -12,11 +12,12 @@ import {
   startAt,
 } from "firebase/database";
 
+const collectionRef = ref(db, "teachers");
+
 export const fetchTeachers = createAsyncThunk(
   "teachers/fetchTeachers",
   async (_, thunkAPI) => {
     try {
-      const collectionRef = ref(db, "teachers");
       const teachersQuery = query(collectionRef);
       const teachersSnapshot = await get(teachersQuery);
       const data = teachersSnapshot.exists()
@@ -35,7 +36,6 @@ export const fetchTeachersByFilter = createAsyncThunk(
   "teachers/fetchTeachersByFilter",
   async (filter, { thunkAPI }) => {
     let teachersQuery;
-    const collectionRef = ref(db, "teachers");
 
     try {
       if (filter.name === "price_per_hour") {

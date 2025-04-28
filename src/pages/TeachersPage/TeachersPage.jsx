@@ -28,10 +28,8 @@ const TeachersPage = () => {
 
   useEffect(() => {
     dispatch(fetchTeachers());
-    if (user) {
-      if (favoriteTeachers.length === 0) {
-        dispatch(fetchFavoriteTeachers());
-      }
+    if (user && favoriteTeachers.length === 0) {
+      dispatch(fetchFavoriteTeachers());
     }
   }, [dispatch]);
 
