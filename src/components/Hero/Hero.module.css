@@ -81,7 +81,8 @@
   }
   .btn {
     display: block;
-    width: 150px;
+    max-width: 250px;
+    padding: 20px 0px;
     text-align: center;
     margin: 0 auto;
     font-size: 14px;
@@ -91,9 +92,5 @@
 @media (max-width: 768px) {
   .title {
     text-align: center;
-  }
-  .btn {
-    width: 80px;
-    padding: 10px 70px;
   }
 }

@@ -11,6 +11,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import { Box, CircularProgress } from "@mui/material";
 import toast from "react-hot-toast";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 ReactModal.setAppElement("#root");
 
@@ -24,6 +25,7 @@ const schema = yup
 
 const ModalRegistration = ({ isOpen, onClose }) => {
   const [isLoader, setLoader] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     addBlockOnBody(isOpen);
@@ -64,6 +66,10 @@ const ModalRegistration = ({ isOpen, onClose }) => {
     }
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div>
       <ReactModal
@@ -98,12 +104,25 @@ const ModalRegistration = ({ isOpen, onClose }) => {
               {...register("email")}
             />
             <p style={{ color: "red" }}>{errors.email?.message}</p>
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              {...register("password")}
-            />
+            <div className={css.fieldPassword}>
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                placeholder="Password"
+                {...register("password")}
+              />
+              <button
+                type="button"
+                className={css.btnIcon}
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? (
+                  <FaEye className={css.iconEye} size={20} />
+                ) : (
+                  <FaEyeSlash className={css.iconEye} size={20} />
+                )}
+              </button>
+            </div>
             <p style={{ color: "red" }}>{errors.password?.message}</p>
           </div>
           <button type="submit" className={css.btn} disabled={isLoader}>

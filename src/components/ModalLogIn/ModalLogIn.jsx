@@ -96,24 +96,25 @@ const ModalLogIn = ({ isOpen, onClose }) => {
               {...register("email")}
             />
             <p style={{ color: "red" }}>{errors.email?.message}</p>
-
-            <input
-              type={showPassword ? "text" : "password"}
-              name="password"
-              placeholder="Password"
-              {...register("password")}
-            />
-            <button
-              type="button"
-              className={css.btnIcon}
-              onClick={togglePasswordVisibility}
-            >
-              {showPassword ? (
-                <FaEyeSlash className={css.iconEye} size={20} />
-              ) : (
-                <FaEye className={css.iconEye} size={20} />
-              )}
-            </button>
+            <div className={css.fieldPassword}>
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                placeholder="Password"
+                {...register("password")}
+              />
+              <button
+                type="button"
+                className={css.btnIcon}
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? (
+                  <FaEye className={css.iconEye} size={20} />
+                ) : (
+                  <FaEyeSlash className={css.iconEye} size={20} />
+                )}
+              </button>
+            </div>
             <p style={{ color: "red" }}>{errors.password?.message}</p>
           </div>
           <button type="submit" className={css.btn} disabled={isLoader}>

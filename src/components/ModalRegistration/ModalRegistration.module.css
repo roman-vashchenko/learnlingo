@@ -61,6 +61,7 @@
 
 .form input {
   padding: 16px 18px;
+  width: 100%;
   border-radius: 12px;
   border: 1px solid rgba(18, 20, 23, 0.1);
 }
@@ -70,8 +71,12 @@
   line-height: 1.37;
 }
 
+.fieldPassword {
+  position: relative;
+}
+
 .btn {
-  padding: 16px 210px;
+  padding: 16px;
   border-radius: 12px;
   background-color: var(--main-color);
   border-color: transparent;
@@ -85,6 +90,15 @@
 .btn:hover,
 .btn:focus {
   background-color: #91d1d1;
+}
+
+.btnIcon {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  cursor: pointer;
+  border-color: transparent;
+  background-color: transparent;
 }
 
 @media (max-width: 768px) {
@@ -103,5 +117,10 @@
   .btn {
     width: 100%;
     padding: 10px 10px;
+  }
+  .btnIcon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
   }
 }

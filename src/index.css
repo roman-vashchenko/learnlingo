@@ -5,6 +5,12 @@
   --bg-color-hero: #bfd6ea;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 20px 64px 32px;

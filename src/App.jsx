@@ -36,6 +36,7 @@ function App() {
               }
             />
           </Route>
+          <Route path="*" element={<p>Page not found</p>} />
         </Routes>
       </Suspense>
     </div>

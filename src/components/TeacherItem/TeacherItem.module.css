@@ -8,12 +8,26 @@
 }
 
 .avatarWrapper {
+  position: relative;
   width: 120px;
 }
 
-.avatar {
-  background-color: var(--main-color);
+.circle {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  width: 12px;
+  height: 12px;
+  background-color: #38cd3e;
   border-radius: 50%;
+  border: 1px solid #ffffff;
+}
+
+.avatar {
+  width: 100%;
+  border-radius: 50%;
+  padding: 5px;
+  border: 3px solid #fbe9ba;
 }
 
 .content {
